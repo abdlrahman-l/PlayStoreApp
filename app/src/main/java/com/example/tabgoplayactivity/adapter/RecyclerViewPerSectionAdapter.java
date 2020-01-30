@@ -1,10 +1,12 @@
 package com.example.tabgoplayactivity.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,13 +64,13 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     public class ItemRowHolder extends RecyclerView.ViewHolder {
         protected TextView sectionTitle;
         protected RecyclerView sectionGameRecyclerView;
-        protected Button btnMore;
+        protected ImageView btnMore;
 
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
             this.sectionTitle = itemView.findViewById(R.id.item_title);
             this.sectionGameRecyclerView = itemView.findViewById(R.id.game_recycler_view);
-            this.btnMore = itemView.findViewById(R.id.btn_more);
+            this.btnMore = itemView.findViewById(R.id.btn_next);
         }
     }
 }

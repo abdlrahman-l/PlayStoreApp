@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void setupTabLayout() {
-        tabLayout.addTab(tabLayout.newTab().setText("HOME"));
-        tabLayout.addTab(tabLayout.newTab().setText("GAMES"));
-        tabLayout.addTab(tabLayout.newTab().setText("MOVIES"));
-        tabLayout.addTab(tabLayout.newTab().setText("BOOKS"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.app));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.joystick));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.movie));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.book));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabGooglePlayAdapter =new TabGoplayAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabGooglePlayAdapter);
