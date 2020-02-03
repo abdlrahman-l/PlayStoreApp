@@ -54,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
         tabGooglePlayAdapter =new TabGoplayAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabGooglePlayAdapter);
         viewPager.setCurrentItem(0);
-
+        setStatusBarColor("#3F51B5");
+        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
+        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
+        searchView.setHint("Search Home");
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

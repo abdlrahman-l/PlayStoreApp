@@ -48,6 +48,7 @@ public class MoviesFragment extends Fragment {
         movieTabLayout.getTabAt(0).setText("For you");
         movieTabLayout.getTabAt(1).setText("Top");
         movieTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        movieTabLayout.setTabIndicatorFullWidth(false);
         movieViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabLayout));
     }
 
