@@ -49,6 +49,7 @@
         app:tabSelectedTextColor="@android:color/white"
         app:tabIndicatorColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabRippleColor="@null"
         tools:targetApi="LOLLIPOP"
         >
 

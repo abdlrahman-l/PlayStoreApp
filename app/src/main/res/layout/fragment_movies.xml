@@ -22,14 +22,21 @@
         app:tabSelectedTextColor="@android:color/white"
         app:tabIndicatorColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabRippleColor="@null"
         tools:targetApi="LOLLIPOP"
         >
 
     </com.google.android.material.tabs.TabLayout>
 
+    <View
+        android:id="@+id/line_tab_layout"
+        android:layout_below="@+id/tab_layout_movie"
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_height="1dp"/>
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_below="@+id/tab_layout_movie"
+        android:layout_below="@+id/line_tab_layout"
         android:id="@+id/view_pager_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         tabGooglePlayAdapter =new TabGoplayAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabGooglePlayAdapter);
         viewPager.setCurrentItem(0);
+        tabLayout.setSelectedTabIndicatorHeight(0);
         setStatusBarColor("#3F51B5");
         tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
         rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
