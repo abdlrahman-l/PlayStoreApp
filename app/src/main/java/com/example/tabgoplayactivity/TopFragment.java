@@ -3,7 +3,10 @@ package com.example.tabgoplayactivity;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
  */
 public class TopFragment extends Fragment {
 
+    RecyclerView topMovieRecycler;
 
     public TopFragment() {
         // Required empty public constructor
@@ -28,4 +32,10 @@ public class TopFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_top, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        topMovieRecycler = view.findViewById(R.id.top_movies_recycler);
+
+    }
 }
