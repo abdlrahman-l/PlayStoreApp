@@ -6,9 +6,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.lapism.searchview.widget.SearchView;
@@ -46,18 +48,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void setupTabLayout() {
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.app));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.app_selected));
+        tabLayout.getTabAt(0).setText("Apps");
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.joystick));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.movie));
+        tabLayout.getTabAt(1).setText("Games");
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.cinema));
+        tabLayout.getTabAt(2).setText("Movies");
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.book));
+        tabLayout.getTabAt(3).setText("Books");
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabGooglePlayAdapter =new TabGoplayAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabGooglePlayAdapter);
         viewPager.setCurrentItem(0);
         tabLayout.setSelectedTabIndicatorHeight(0);
-        setStatusBarColor("#3F51B5");
-        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
-        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
+//        setStatusBarColor("#3F51B5");
+//        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
+//        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
         searchView.setHint("Search Home");
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -65,31 +71,46 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()){
                     case 0:
-                        setStatusBarColor("#3F51B5");
-                        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
-                        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
+//                        setStatusBarColor("#3F51B5");
+//                        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
+//                        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
+                        tabLayout.getTabAt(0).setIcon(R.drawable.app_selected);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.joystick);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.cinema);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.book);
                         searchView.setHint("Search Home");
                         break;
                     case 1:
-                        setStatusBarColor("#007a0e");
-                        tabLayout.setBackgroundColor(Color.parseColor("#007a0e"));
-                        rlSearch.setBackgroundColor(Color.parseColor("#007a0e"));
+//                        setStatusBarColor("#007a0e");
+//                        tabLayout.setBackgroundColor(Color.parseColor("#007a0e"));
+//                        rlSearch.setBackgroundColor(Color.parseColor("#007a0e"));
+                        tabLayout.getTabAt(1).setIcon(R.drawable.joystick_selected);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.app);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.cinema);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.book);
                         searchView.setHint("Search Games");
                         break;
                     case 2:
-                        setStatusBarColor("#960000");
-                        tabLayout.setBackgroundColor(Color.parseColor("#960000"));
-                        rlSearch.setBackgroundColor(Color.parseColor("#960000"));
+//                        setStatusBarColor("#960000");
+//                        tabLayout.setBackgroundColor(Color.parseColor("#960000"));
+//                        rlSearch.setBackgroundColor(Color.parseColor("#960000"));
+                        tabLayout.getTabAt(2).setIcon(R.drawable.cinema_selected);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.app);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.joystick);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.book);
                         searchView.setHint("Search Movies");
                         break;
                     case 3:
-                        setStatusBarColor("#008282");
-                        tabLayout.setBackgroundColor(Color.parseColor("#008282"));
-                        rlSearch.setBackgroundColor(Color.parseColor("#008282"));
+//                        setStatusBarColor("#008282");
+//                        tabLayout.setBackgroundColor(Color.parseColor("#008282"));
+//                        rlSearch.setBackgroundColor(Color.parseColor("#008282"));
+                        tabLayout.getTabAt(0).setIcon(R.drawable.app);
+                        tabLayout.getTabAt(1).setIcon(R.drawable.joystick);
+                        tabLayout.getTabAt(2).setIcon(R.drawable.cinema);
+                        tabLayout.getTabAt(3).setIcon(R.drawable.book_selected);
                         searchView.setHint("Search Books");
                         break;
                 }
-
                 viewPager.setCurrentItem(tab.getPosition());
             }
 

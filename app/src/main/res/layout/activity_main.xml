@@ -11,7 +11,7 @@
        android:id="@+id/rlSearch"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:background="@color/colorPrimary"
+       android:background="@color/white"
        >
 
        <com.lapism.searchview.widget.SearchView
@@ -23,8 +23,15 @@
 
    </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <View
+        android:id="@+id/line_tab_layout"
         android:layout_below="@+id/rlSearch"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        android:layout_height="1dp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@+id/line_tab_layout"
         android:layout_above="@+id/tabLayout"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -32,6 +39,12 @@
 
     </androidx.viewpager.widget.ViewPager>
 
+    <View
+        android:id="@+id/line2_tab_layout"
+        android:layout_above="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        android:layout_height="1dp"/>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_alignParentEnd="true"
@@ -43,13 +56,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:minHeight="?android:attr/actionBarSize"
-        app:tabTextColor="@android:color/white"
-        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/darker_gray"
+        app:tabSelectedTextColor="@color/colorPrimary"
         app:tabIndicatorColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabRippleColor="@null"
+        style="@style/MyCustomTabLayout"
         tools:targetApi="LOLLIPOP"
         >
 
