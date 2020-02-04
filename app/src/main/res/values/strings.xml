@@ -3,4 +3,37 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--top movies-->
+    <string-array name="top_movies_name">
+        <item>Gundala</item>
+        <item>Joker</item>
+        <item>Rumah kentang</item>
+        <item>Jumanji: Welcome to the junggle</item>
+    </string-array>
+    <string-array name="top_movies_category">
+        <item>Action, Adventure</item>
+        <item>Drama</item>
+        <item>Horror</item>
+        <item>Action, Adventure</item>
+    </string-array>
+    <string-array name="top_movies_rating">
+        <item>4.0</item>
+        <item>4.2</item>
+        <item>4.0</item>
+        <item>4.5</item>
+    </string-array>
+    <string-array name="top_movies_price">
+        <item>IDR 15,000.00</item>
+        <item>IDR 20,000.00</item>
+        <item>IDR 15,000.00</item>
+        <item>IDR 19,000.00</item>
+    </string-array>
+    <array name="top_movies_photo">
+        <item>@drawable/gundala</item>
+        <item>@drawable/joker</item>
+        <item>@drawable/rumahkentang</item>
+        <item>@drawable/jumanji</item>
+    </array>
+
 </resources>

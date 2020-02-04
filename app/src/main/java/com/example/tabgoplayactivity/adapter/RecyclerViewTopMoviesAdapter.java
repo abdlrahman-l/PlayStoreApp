@@ -40,6 +40,7 @@ public class RecyclerViewTopMoviesAdapter extends RecyclerView.Adapter<RecyclerV
         holder.categoryMovie.setText(topMovie.getCategory());
         holder.ratingMovie.setText(topMovie.getRating());
         holder.priceMovie.setText(topMovie.getPrice());
+        holder.imageMovie.setImageResource(topMovie.getImage());
     }
 
     @Override
@@ -49,8 +50,8 @@ public class RecyclerViewTopMoviesAdapter extends RecyclerView.Adapter<RecyclerV
 
     public class RowHolder extends RecyclerView.ViewHolder {
 
-        TextView titleMovie, categoryMovie, ratingMovie, priceMovie;
-        ImageView imageMovie;
+        protected TextView titleMovie, categoryMovie, ratingMovie, priceMovie;
+        protected ImageView imageMovie;
 
         public RowHolder(@NonNull View itemView) {
             super(itemView);
