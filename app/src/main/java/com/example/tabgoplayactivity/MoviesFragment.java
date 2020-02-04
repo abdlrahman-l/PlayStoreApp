@@ -25,13 +25,6 @@ import java.util.ArrayList;
  */
 public class MoviesFragment extends Fragment {
 
-    private String topMovieTitle[];
-    private String topMovieCategory[];
-    private String topMovieRating[];
-    private String topMoviePrice[];
-    private TypedArray topMoviePhoto;
-    private ArrayList<SingleMovieModel> topMoviesList;
-
     TabLayout movieTabLayout;
     ViewPager movieViewPager;
 
@@ -70,25 +63,4 @@ public class MoviesFragment extends Fragment {
         viewPager.setAdapter(categoryAdapter);
     }
 
-    private void addItemToList(){
-        topMoviesList = new ArrayList<>();
-
-        for (int i=0;i<topMovieTitle.length;i++){
-            SingleMovieModel topMovie = new SingleMovieModel();
-            topMovie.setTitle(topMovieTitle[i]);
-            topMovie.setCategory(topMovieCategory[i]);
-            topMovie.setRating(topMovieRating[i]);
-            topMovie.setPrice(topMoviePrice[i]);
-            topMovie.setImage(topMoviePhoto.getResourceId(i,-1));
-            topMoviesList.add(topMovie);
-        }
-    }
-
-    private void prepareResource(){
-        topMovieTitle = getResources().getStringArray(R.array.top_movies_name);
-        topMovieCategory = getResources().getStringArray(R.array.top_movies_category);
-        topMovieRating = getResources().getStringArray(R.array.top_movies_rating);
-        topMoviePrice = getResources().getStringArray(R.array.top_movies_price);
-        topMoviePhoto = getResources().obtainTypedArray(R.array.top_movies_photo);
-    }
 }
