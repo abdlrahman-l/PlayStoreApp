@@ -13,14 +13,14 @@
         android:layout_alignParentStart="true"
         android:id="@+id/tab_layout_movie"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:background="#960000"
+        android:background="@color/white"
         style="@style/MyCustomTabLayout"
         android:minHeight="?android:attr/actionBarSize"
-        app:tabTextColor="@android:color/white"
-        app:tabSelectedTextColor="@android:color/white"
-        app:tabIndicatorColor="@android:color/white"
+        app:tabTextColor="@android:color/darker_gray"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabRippleColor="@null"
         tools:targetApi="LOLLIPOP"
@@ -32,7 +32,7 @@
         android:id="@+id/line_tab_layout"
         android:layout_below="@+id/tab_layout_movie"
         android:layout_width="match_parent"
-        android:background="#000"
+        android:background="@color/grey"
         android:layout_height="1dp"/>
 
     <androidx.viewpager.widget.ViewPager
