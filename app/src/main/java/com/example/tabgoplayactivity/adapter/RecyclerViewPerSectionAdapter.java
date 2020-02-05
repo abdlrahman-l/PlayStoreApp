@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tabgoplayactivity.ForYouFragment;
+import com.example.tabgoplayactivity.GamesFragment;
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.model.SingleMovieModel;
 
 import java.util.ArrayList;
 
@@ -24,10 +27,12 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
 
     private ArrayList<SectionDataGameModel> dataList;
     private Context mContext;
+    private int whichFragment;
 
-    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext) {
+    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment) {
         this.dataList = dataList;
         this.mContext = mContext;
+        this.whichFragment = whichFragment;
     }
 
     @NonNull
@@ -41,12 +46,26 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(@NonNull ItemRowHolder holder, int position) {
         final String sectionName = dataList.get(position).getHeaderTitle();
-        ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
         holder.sectionTitle.setText(dataList.get(position).getHeaderTitle());
-        SectionListGameAdapter sectionListGameAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
-        holder.sectionGameRecyclerView.setHasFixedSize(true);
-        holder.sectionGameRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
-        holder.sectionGameRecyclerView.setAdapter(sectionListGameAdapter);
+        if (dataList.get(position).getDescriptionTitle().equals("")){
+            holder.descriptionTitle.setVisibility(View.GONE);
+        }else{
+            holder.descriptionTitle.setText(dataList.get(position).getDescriptionTitle());
+        }
+        switch (whichFragment){
+            case ForYouFragment.FOR_YOU_MOVIES:
+                ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
+                SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext);
+                holder.sectionRecyclerView.setAdapter(sectionListMoviesAdapter);
+                break;
+            case GamesFragment.FOR_YOU_GAMES:
+                ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
+                SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
+                holder.sectionRecyclerView.setAdapter(sectionListAdapter);
+                break;
+        }
+        holder.sectionRecyclerView.setHasFixedSize(true);
+        holder.sectionRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
 
         holder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +82,16 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
 
     public class ItemRowHolder extends RecyclerView.ViewHolder {
         protected TextView sectionTitle;
-        protected RecyclerView sectionGameRecyclerView;
+        protected TextView descriptionTitle;
+        protected RecyclerView sectionRecyclerView;
         protected ImageView btnMore;
 
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
             this.sectionTitle = itemView.findViewById(R.id.item_title);
-            this.sectionGameRecyclerView = itemView.findViewById(R.id.game_recycler_view);
             this.btnMore = itemView.findViewById(R.id.btn_next);
+            this.descriptionTitle = itemView.findViewById(R.id.item_title_description);
+            this.sectionRecyclerView = itemView.findViewById(R.id.game_recycler_view);
         }
     }
 }

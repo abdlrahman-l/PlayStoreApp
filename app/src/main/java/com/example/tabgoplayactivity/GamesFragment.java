@@ -30,6 +30,7 @@ import java.util.ArrayList;
  */
 public class GamesFragment extends Fragment {
 
+    public final static int FOR_YOU_GAMES = 67281;
     ArrayList<SectionDataGameModel> allSampleGameData;
     private SearchView searchView;
     public GamesFragment() {
@@ -42,7 +43,7 @@ public class GamesFragment extends Fragment {
         createDummyData();
         RecyclerView sectionRecyclerView = view.findViewById(R.id.section_recycler_view);
         sectionRecyclerView.setHasFixedSize(true);
-        RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData,getActivity());
+        RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData,getActivity(),FOR_YOU_GAMES);
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         sectionRecyclerView.setAdapter(adapter);
     }
@@ -68,7 +69,7 @@ public class GamesFragment extends Fragment {
             SectionDataGameModel dm = new SectionDataGameModel();
 
             dm.setHeaderTitle("Section " + i);
-
+            dm.setDescriptionTitle("Description" + i);
             ArrayList<SingleGameModel> singleItem = new ArrayList<SingleGameModel>();
             for (int j = 0; j <= 5; j++) {
                 singleItem.add(new SingleGameModel("Item " + j,j, "URL " + j));

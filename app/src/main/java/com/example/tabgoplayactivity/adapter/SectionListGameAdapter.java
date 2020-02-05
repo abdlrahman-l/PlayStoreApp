@@ -35,8 +35,8 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
     @Override
     public void onBindViewHolder(@NonNull SingleGameRowHolder holder, int position)  {
         SingleGameModel singleGame = gameList.get(position);
-        holder.gameName.setText(gameList.get(position).getGameName());
-        holder.gameRating.setText(String.valueOf(gameList.get(position).getGameRating()));
+        holder.gameName.setText(singleGame.getGameName());
+        holder.gameRating.setText(String.valueOf(singleGame.getGameRating()));
     }
 
     @Override
