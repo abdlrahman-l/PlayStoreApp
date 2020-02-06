@@ -1,18 +1,21 @@
 package com.example.tabgoplayactivity.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tabgoplayactivity.ForYouFragment;
 import com.example.tabgoplayactivity.GamesFragment;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
@@ -52,6 +55,13 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         }else{
             holder.descriptionTitle.setText(dataList.get(position).getDescriptionTitle());
         }
+        holder.sectionContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailsSection = new Intent(mContext, SectionDetailsActivity.class);
+                mContext.startActivity(detailsSection);
+            }
+        });
         switch (whichFragment){
             case ForYouFragment.FOR_YOU_MOVIES:
                 ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
@@ -85,6 +95,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         protected TextView descriptionTitle;
         protected RecyclerView sectionRecyclerView;
         protected ImageView btnMore;
+        protected RelativeLayout sectionContainer;
 
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +103,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
             this.btnMore = itemView.findViewById(R.id.btn_next);
             this.descriptionTitle = itemView.findViewById(R.id.item_title_description);
             this.sectionRecyclerView = itemView.findViewById(R.id.game_recycler_view);
+            this.sectionContainer = itemView.findViewById(R.id.section_container);
         }
     }
 }
