@@ -30,8 +30,8 @@ import java.util.ArrayList;
  */
 public class GamesFragment extends Fragment {
 
-    public final static int FOR_YOU_GAMES = 67281;
-    ArrayList<SectionDataGameModel> allSampleGameData;
+    public final static int FOR_YOU_GAMES = 681;
+    private ArrayList<SectionDataGameModel> allSampleGameData;
     private SearchView searchView;
     public GamesFragment() {
         // Required empty public constructor
@@ -44,6 +44,7 @@ public class GamesFragment extends Fragment {
         RecyclerView sectionRecyclerView = view.findViewById(R.id.section_recycler_view);
         sectionRecyclerView.setHasFixedSize(true);
         RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData,getActivity(),FOR_YOU_GAMES);
+        adapter.notifyDataSetChanged();
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         sectionRecyclerView.setAdapter(adapter);
     }

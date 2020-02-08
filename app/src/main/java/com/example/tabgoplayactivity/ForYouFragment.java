@@ -19,6 +19,7 @@ import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
+import com.example.tabgoplayactivity.utils.DataUtils;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,8 @@ public class ForYouFragment extends Fragment {
     private String topMovieRating[];
     private String topMoviePrice[];
     private TypedArray topMoviePhoto;
-    private ArrayList<SingleMovieModel> topMoviesList;
-    ArrayList<SectionDataGameModel> allSampleData;
+    private ArrayList<SectionDataGameModel> allSampleData;
+    private RecyclerView sectionRecyclerView;
     public final static int FOR_YOU_MOVIES = 123;
 
     public ForYouFragment() {
@@ -45,20 +46,20 @@ public class ForYouFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_for_you, container, false);
+        createDummyData();
+        View view = inflater.inflate(R.layout.fragment_for_you, container, false);
+        sectionRecyclerView = view.findViewById(R.id.section_for_movie);
+        sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
+        RecyclerViewPerSectionAdapter adapters = new RecyclerViewPerSectionAdapter(allSampleData,getActivity(),FOR_YOU_MOVIES);
+        adapters.notifyDataSetChanged();
+        sectionRecyclerView.setAdapter(adapters);
+        sectionRecyclerView.setHasFixedSize(true);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        prepareResource();
-        addItemToList();
-        createDummyData();
-        RecyclerView sectionRecyclerView = view.findViewById(R.id.section_for_movie);
-        RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleData,getActivity(),FOR_YOU_MOVIES);
-        sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-        sectionRecyclerView.setAdapter(adapter);
-        sectionRecyclerView.setHasFixedSize(true);
     }
 
     public void createDummyData() {
@@ -66,38 +67,17 @@ public class ForYouFragment extends Fragment {
         SectionDataGameModel dm = new SectionDataGameModel();
         dm.setHeaderTitle("Film yang baru tiba");
         dm.setDescriptionTitle("Nikmati koleksi film terbaru kami");
-        dm.setAllMoviesInSection(topMoviesList);
+        dm.setAllMoviesInSection(DataUtils.getDataMovie(getActivity()));
         allSampleData.add(dm);
 
         SectionDataGameModel dm2 = new SectionDataGameModel();
         dm2.setHeaderTitle("Film terpopuler");
         dm2.setDescriptionTitle("");
-        dm2.setAllMoviesInSection(topMoviesList);
+        dm2.setAllMoviesInSection(DataUtils.getDataMovie(getActivity()));
 
         allSampleData.add(dm2);
     }
 
-    private void addItemToList(){
-        topMoviesList = new ArrayList<>();
-
-        for (int i=0;i<topMovieTitle.length;i++){
-            SingleMovieModel topMovie = new SingleMovieModel();
-            topMovie.setTitle(topMovieTitle[i]);
-            topMovie.setCategory(topMovieCategory[i]);
-            topMovie.setRating(topMovieRating[i]);
-            topMovie.setPrice(topMoviePrice[i]);
-            topMovie.setImage(topMoviePhoto.getResourceId(i,-1));
-            topMoviesList.add(topMovie);
-        }
-    }
-
-    private void prepareResource(){
-        topMovieTitle = getResources().getStringArray(R.array.top_movies_name);
-        topMovieCategory = getResources().getStringArray(R.array.top_movies_category);
-        topMovieRating = getResources().getStringArray(R.array.top_movies_rating);
-        topMoviePrice = getResources().getStringArray(R.array.top_movies_price);
-        topMoviePhoto = getResources().obtainTypedArray(R.array.top_movies_photo);
-    }
 
 
 }

@@ -1,12 +1,16 @@
 package com.example.tabgoplayactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -59,11 +63,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabGooglePlayAdapter =new TabGoplayAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabGooglePlayAdapter);
-        viewPager.setCurrentItem(0);
         tabLayout.setSelectedTabIndicatorHeight(0);
 //        setStatusBarColor("#3F51B5");
 //        tabLayout.setBackgroundColor(Color.parseColor("#3F51B5"));
-//        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));
+//        rlSearch.setBackgroundColor(Color.parseColor("#3F51B5"));a
         searchView.setHint("Search Home");
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

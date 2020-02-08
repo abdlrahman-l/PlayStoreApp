@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
 import com.example.tabgoplayactivity.adapter.RecyclerViewTopMoviesAdapter;
+import com.example.tabgoplayactivity.adapter.SectionListGameAdapter;
 import com.example.tabgoplayactivity.adapter.SectionListMovieAdapter;
 import com.example.tabgoplayactivity.utils.DataUtils;
 
@@ -44,8 +45,16 @@ public class SectionDetaillsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.section_details_recycler);
         recyclerView.setHasFixedSize(true);
-        SectionListMovieAdapter adapter = new SectionListMovieAdapter(DataUtils.getDataMovie(getActivity()),getActivity());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
-        recyclerView.setAdapter(adapter);
+        if (((SectionDetailsActivity)getActivity()).getMovieSectionList() != null) {
+            SectionListMovieAdapter adapter = new SectionListMovieAdapter(((SectionDetailsActivity)getActivity()).getMovieSectionList(),getActivity());
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
+            recyclerView.setAdapter(adapter);
+        }
+        else {
+            SectionListGameAdapter adapter = new SectionListGameAdapter(((SectionDetailsActivity)getActivity()).getGameSectionList(),getActivity());
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
+            recyclerView.setAdapter(adapter);
+        }
+
     }
 }

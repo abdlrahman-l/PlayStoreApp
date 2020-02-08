@@ -3,6 +3,7 @@ package com.example.tabgoplayactivity.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemRowHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemRowHolder holder, final int position) {
         final String sectionName = dataList.get(position).getHeaderTitle();
         holder.sectionTitle.setText(dataList.get(position).getHeaderTitle());
         if (dataList.get(position).getDescriptionTitle().equals("")){
@@ -55,27 +56,34 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         }else{
             holder.descriptionTitle.setText(dataList.get(position).getDescriptionTitle());
         }
-        holder.sectionContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent detailsSection = new Intent(mContext, SectionDetailsActivity.class);
-                mContext.startActivity(detailsSection);
-            }
-        });
         switch (whichFragment){
             case ForYouFragment.FOR_YOU_MOVIES:
                 ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
                 SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext);
+                sectionListMoviesAdapter.notifyDataSetChanged();
                 holder.sectionRecyclerView.setAdapter(sectionListMoviesAdapter);
+
                 break;
             case GamesFragment.FOR_YOU_GAMES:
                 ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
                 SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
+                sectionListAdapter.notifyDataSetChanged();
                 holder.sectionRecyclerView.setAdapter(sectionListAdapter);
                 break;
         }
+        holder.sectionContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailsSection = new Intent(mContext, SectionDetailsActivity.class);
+                if (dataList.get(position).getAllMoviesInSection() != null)
+                    detailsSection.putExtra(SectionDetailsActivity.MOVIES_SECTION_LIST,dataList.get(position).getAllMoviesInSection());
+                else if (dataList.get(position).getAllItemsInSection() != null)
+                    detailsSection.putExtra(SectionDetailsActivity.GAMES_SECTION_LIST,dataList.get(position).getAllItemsInSection());
+                mContext.startActivity(detailsSection);
+            }
+        });
         holder.sectionRecyclerView.setHasFixedSize(true);
-        holder.sectionRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+        holder.sectionRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.HORIZONTAL,false));
 
         holder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +98,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         return (null != dataList ? dataList.size() : 0);
     }
 
-    public class ItemRowHolder extends RecyclerView.ViewHolder {
+    public static class ItemRowHolder extends RecyclerView.ViewHolder {
         protected TextView sectionTitle;
         protected TextView descriptionTitle;
         protected RecyclerView sectionRecyclerView;

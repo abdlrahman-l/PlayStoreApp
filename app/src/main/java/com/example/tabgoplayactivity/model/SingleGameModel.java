@@ -1,6 +1,8 @@
 package com.example.tabgoplayactivity.model;
 
-public class SingleGameModel {
+import java.io.Serializable;
+
+public class SingleGameModel implements Serializable {
 
     private String gameName;
     private int gameRating;

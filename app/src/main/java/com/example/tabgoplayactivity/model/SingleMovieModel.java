@@ -1,6 +1,8 @@
 package com.example.tabgoplayactivity.model;
 
-public class SingleMovieModel {
+import java.io.Serializable;
+
+public class SingleMovieModel implements Serializable {
 
     private String title;
     private String category;
