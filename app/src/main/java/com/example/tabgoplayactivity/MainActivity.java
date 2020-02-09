@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
     public final static int GAME_CAROUSEL = 23212;
     public final static int APP_CAROUSEL = 23012;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    SearchView searchView;
-    RelativeLayout rlSearch;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    protected SearchView searchView;
+    private RelativeLayout rlSearch;
 
     TabGoplayAdapter tabGooglePlayAdapter;
     @Override

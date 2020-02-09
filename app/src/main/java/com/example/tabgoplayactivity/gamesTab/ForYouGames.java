@@ -51,6 +51,7 @@ public class ForYouGames extends Fragment {
         RecyclerView sectionRecyclerView = view.findViewById(R.id.section_recycler_view);
         sectionRecyclerView.setHasFixedSize(true);
         RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData,getActivity(),FOR_YOU_GAMES, MainActivity.GAME_CAROUSEL);
+        adapter.setFm(getChildFragmentManager());
         adapter.notifyDataSetChanged();
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         sectionRecyclerView.setAdapter(adapter);

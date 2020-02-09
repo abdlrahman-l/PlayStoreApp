@@ -26,6 +26,7 @@ import com.example.tabgoplayactivity.model.SingleMovieModel;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,8 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     private Context mContext;
     private int whichFragment;
     private int appOrGame;
+    private FragmentManager fm;
+
     public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment) {
         this.dataList = dataList;
         this.mContext = mContext;
@@ -116,7 +119,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
                         break;
                     case ForYouGames.FOR_YOU_GAMES:
                         ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
-                        SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
+                        SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext,fm);
                         sectionListAdapter.notifyDataSetChanged();
                         holder.sectionRecyclerView.setAdapter(sectionListAdapter);
                         break;
@@ -147,4 +150,13 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
             this.sectionContainer = itemView.findViewById(R.id.section_container);
         }
     }
+
+    public FragmentManager getFm() {
+        return fm;
+    }
+
+    public void setFm(FragmentManager fm) {
+        this.fm = fm;
+    }
+
 }

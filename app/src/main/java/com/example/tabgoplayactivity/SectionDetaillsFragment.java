@@ -51,7 +51,7 @@ public class SectionDetaillsFragment extends Fragment {
             recyclerView.setAdapter(adapter);
         }
         else {
-            SectionListGameAdapter adapter = new SectionListGameAdapter(((SectionDetailsActivity)getActivity()).getGameSectionList(),getActivity());
+            SectionListGameAdapter adapter = new SectionListGameAdapter(((SectionDetailsActivity)getActivity()).getGameSectionList(),getActivity(),getChildFragmentManager());
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
             recyclerView.setAdapter(adapter);
         }

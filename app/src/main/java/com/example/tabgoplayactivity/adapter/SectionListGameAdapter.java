@@ -4,24 +4,29 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.tabgoplayactivity.BottomSheetDialog;
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGameAdapter.SingleGameRowHolder> {
 
     private ArrayList<SingleGameModel> gameList;
     private Context mContext;
+    private FragmentManager fm;
 
-    public SectionListGameAdapter(ArrayList<SingleGameModel> gameList, Context mContext) {
+    public SectionListGameAdapter(ArrayList<SingleGameModel> gameList, Context mContext, FragmentManager fm) {
         this.gameList = gameList;
         this.mContext = mContext;
+        this.fm = fm;
     }
 
     @NonNull
@@ -35,9 +40,17 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
 
     @Override
     public void onBindViewHolder(@NonNull SingleGameRowHolder holder, int position)  {
-        SingleGameModel singleGame = gameList.get(position);
+        final SingleGameModel singleGame = gameList.get(position);
         holder.gameName.setText(singleGame.getGameName());
         holder.gameSize.setText(singleGame.getGameSize());
+        holder.gameContainer.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                BottomSheetDialog dialog = new BottomSheetDialog(singleGame);
+                dialog.show(fm,"test");
+                return true;
+            }
+        });
     }
 
     @Override
@@ -48,11 +61,13 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
     public class SingleGameRowHolder extends RecyclerView.ViewHolder {
         protected TextView gameName;
         protected TextView gameSize;
+        protected LinearLayout gameContainer;
 
         public SingleGameRowHolder(@NonNull View itemView) {
             super(itemView);
             this.gameName = itemView.findViewById(R.id.game_title);
             this.gameSize = itemView.findViewById(R.id.game_size);
+            this.gameContainer = itemView.findViewById(R.id.single_game_container);
         }
     }
 }
