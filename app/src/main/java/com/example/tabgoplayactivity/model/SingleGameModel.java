@@ -7,14 +7,16 @@ public class SingleGameModel implements Serializable {
     private String gameName;
     private int gameRating;
     private String gameDescription;
+    private String gameSize;
+    private int gameIcon;
 
     public SingleGameModel(){
 
     }
 
-    public SingleGameModel(String gameName, int gameRating, String gameDescription) {
+    public SingleGameModel(String gameName, String gameSize, String gameDescription) {
         this.gameName = gameName;
-        this.gameRating = gameRating;
+        this.gameSize = gameSize;
         this.gameDescription = gameDescription;
     }
 
@@ -41,4 +43,20 @@ public class SingleGameModel implements Serializable {
     public void setGameDescription(String gameDescription) {
         this.gameDescription = gameDescription;
     }
+    public String getGameSize() {
+        return gameSize;
+    }
+
+    public void setGameSize(String gameSize) {
+        this.gameSize = gameSize;
+    }
+
+    public int getGameIcon() {
+        return gameIcon;
+    }
+
+    public void setGameIcon(int gameIcon) {
+        this.gameIcon = gameIcon;
+    }
+
 }

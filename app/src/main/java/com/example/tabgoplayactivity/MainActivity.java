@@ -21,6 +21,8 @@ import com.lapism.searchview.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public final static int GAME_CAROUSEL = 23212;
+    public final static int APP_CAROUSEL = 23012;
     TabLayout tabLayout;
     ViewPager viewPager;
     SearchView searchView;

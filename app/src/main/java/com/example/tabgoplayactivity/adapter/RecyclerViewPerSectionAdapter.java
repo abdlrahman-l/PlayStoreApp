@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.tabgoplayactivity.ForYouFragment;
 import com.example.tabgoplayactivity.GamesFragment;
+import com.example.tabgoplayactivity.MainActivity;
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
+import com.example.tabgoplayactivity.gamesTab.ForYouGames;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
@@ -32,11 +34,18 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     private ArrayList<SectionDataGameModel> dataList;
     private Context mContext;
     private int whichFragment;
-
+    private int appOrGame;
     public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment) {
         this.dataList = dataList;
         this.mContext = mContext;
         this.whichFragment = whichFragment;
+    }
+
+    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment, int appOrGame) {
+        this.dataList = dataList;
+        this.mContext = mContext;
+        this.whichFragment = whichFragment;
+        this.appOrGame = appOrGame;
     }
 
     @NonNull
@@ -56,21 +65,7 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         }else{
             holder.descriptionTitle.setText(dataList.get(position).getDescriptionTitle());
         }
-        switch (whichFragment){
-            case ForYouFragment.FOR_YOU_MOVIES:
-                ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
-                SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext);
-                sectionListMoviesAdapter.notifyDataSetChanged();
-                holder.sectionRecyclerView.setAdapter(sectionListMoviesAdapter);
-
-                break;
-            case GamesFragment.FOR_YOU_GAMES:
-                ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
-                SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
-                sectionListAdapter.notifyDataSetChanged();
-                holder.sectionRecyclerView.setAdapter(sectionListAdapter);
-                break;
-        }
+        setAdapter(position,holder);
         holder.sectionContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +86,44 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
                 Toast.makeText(v.getContext(),"test "+sectionName,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setAdapter(int position, ItemRowHolder holder){
+        if (whichFragment == ForYouFragment.FOR_YOU_MOVIES){
+            ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
+            SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext);
+            sectionListMoviesAdapter.notifyDataSetChanged();
+            holder.sectionRecyclerView.setAdapter(sectionListMoviesAdapter);
+        }
+        else {
+            if (position == 0){
+                switch (appOrGame){
+                    case MainActivity.APP_CAROUSEL:
+                        break;
+                    case MainActivity.GAME_CAROUSEL:
+                        ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
+                        SectionListCarouselAdapter sectionListAdapter = new SectionListCarouselAdapter(mContext,MainActivity.GAME_CAROUSEL);
+                        sectionListAdapter.setListGame(singleSectionGames);
+                        sectionListAdapter.notifyDataSetChanged();
+                        holder.sectionRecyclerView.setAdapter(sectionListAdapter);
+                        break;
+                }
+            }
+            else {
+                switch (whichFragment){
+                    case ForYouFragment.FOR_YOU_MOVIES:
+
+                        break;
+                    case ForYouGames.FOR_YOU_GAMES:
+                        ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
+                        SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext);
+                        sectionListAdapter.notifyDataSetChanged();
+                        holder.sectionRecyclerView.setAdapter(sectionListAdapter);
+                        break;
+                }
+            }
+        }
+
     }
 
     @Override

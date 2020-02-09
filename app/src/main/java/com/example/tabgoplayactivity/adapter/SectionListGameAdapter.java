@@ -32,11 +32,12 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
         return singleGameRowHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull SingleGameRowHolder holder, int position)  {
         SingleGameModel singleGame = gameList.get(position);
         holder.gameName.setText(singleGame.getGameName());
-        holder.gameRating.setText(String.valueOf(singleGame.getGameRating()));
+        holder.gameSize.setText(singleGame.getGameSize());
     }
 
     @Override
@@ -46,12 +47,12 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
 
     public class SingleGameRowHolder extends RecyclerView.ViewHolder {
         protected TextView gameName;
-        protected TextView gameRating;
+        protected TextView gameSize;
 
         public SingleGameRowHolder(@NonNull View itemView) {
             super(itemView);
             this.gameName = itemView.findViewById(R.id.game_title);
-            this.gameRating = itemView.findViewById(R.id.game_rate);
+            this.gameSize = itemView.findViewById(R.id.game_size);
         }
     }
 }

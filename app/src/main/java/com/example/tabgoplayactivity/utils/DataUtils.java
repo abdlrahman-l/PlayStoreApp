@@ -27,7 +27,7 @@ public class DataUtils {
             topMovie.setCategory(topMovieCategory[i]);
             topMovie.setRating(topMovieRating[i]);
             topMovie.setPrice(topMoviePrice[i]);
-            topMovie.setImage(topMoviePhoto.getResourceId(i,-1));
+//            topMovie.setImage(topMoviePhoto.getResourceId(i,-1));
             topMoviesList.add(topMovie);
         }
     }
