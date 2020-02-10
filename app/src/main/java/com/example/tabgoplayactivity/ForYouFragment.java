@@ -51,6 +51,7 @@ public class ForYouFragment extends Fragment {
         sectionRecyclerView = view.findViewById(R.id.section_for_movie);
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         RecyclerViewPerSectionAdapter adapters = new RecyclerViewPerSectionAdapter(allSampleData,getActivity(),FOR_YOU_MOVIES);
+        adapters.setFm(getChildFragmentManager());
         adapters.notifyDataSetChanged();
         sectionRecyclerView.setAdapter(adapters);
         sectionRecyclerView.setHasFixedSize(true);

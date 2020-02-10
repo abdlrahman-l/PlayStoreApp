@@ -46,7 +46,8 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
         holder.gameContainer.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                BottomSheetDialog dialog = new BottomSheetDialog(singleGame);
+                BottomSheetDialog dialog = new BottomSheetDialog();
+                dialog.setSingleGame(singleGame);
                 dialog.show(fm,"test");
                 return true;
             }

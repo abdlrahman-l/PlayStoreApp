@@ -46,7 +46,7 @@ public class SectionDetaillsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.section_details_recycler);
         recyclerView.setHasFixedSize(true);
         if (((SectionDetailsActivity)getActivity()).getMovieSectionList() != null) {
-            SectionListMovieAdapter adapter = new SectionListMovieAdapter(((SectionDetailsActivity)getActivity()).getMovieSectionList(),getActivity());
+            SectionListMovieAdapter adapter = new SectionListMovieAdapter(((SectionDetailsActivity)getActivity()).getMovieSectionList(),getActivity(),getChildFragmentManager());
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
             recyclerView.setAdapter(adapter);
         }
