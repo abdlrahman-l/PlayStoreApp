@@ -52,7 +52,7 @@ public class GamesFragment extends Fragment {
         setUpViewPager(movieViewPager);
 
         movieTabLayout.getTabAt(0).setText("For you");
-        movieTabLayout.getTabAt(1).setText("Top");
+        movieTabLayout.getTabAt(1).setText("Top charts");
         movieTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         movieTabLayout.setTabIndicatorFullWidth(false);
         movieViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabLayout));
