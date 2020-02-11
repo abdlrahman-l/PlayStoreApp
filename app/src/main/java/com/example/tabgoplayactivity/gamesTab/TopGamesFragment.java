@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.adapter.CategoryTopRecyclerView;
+import com.example.tabgoplayactivity.adapter.RecyclerViewTopGamesAdapter;
+import com.example.tabgoplayactivity.listener.ClickListener;
+import com.example.tabgoplayactivity.model.SingleGameModel;
 
 import java.util.ArrayList;
 
@@ -24,8 +27,11 @@ import java.util.ArrayList;
 public class TopGamesFragment extends Fragment {
 
     private RecyclerView topGamesCategoryRv;
+    private RecyclerView topListGamesCategoryRv;
     private ArrayList<String> topCategoryNames;
-
+    private ArrayList<ArrayList<SingleGameModel>> arrayListsAllGames;
+    private ArrayList<SingleGameModel> singleItem;
+    private ArrayList<SingleGameModel> singleItem2;
     public TopGamesFragment() {
         // Required empty public constructor
     }
@@ -42,11 +48,8 @@ public class TopGamesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         declareTopCategoryNames();
-        topGamesCategoryRv = view.findViewById(R.id.top_category_games);
-        CategoryTopRecyclerView adapter = new CategoryTopRecyclerView(topCategoryNames,getActivity());
-        topGamesCategoryRv.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
-        topGamesCategoryRv.setHasFixedSize(true);
-        topGamesCategoryRv.setAdapter(adapter);
+        setListTopCategory(view);
+        setTopCategoryTab(view);
     }
 
     public void declareTopCategoryNames(){
@@ -55,5 +58,39 @@ public class TopGamesFragment extends Fragment {
         topCategoryNames.add("Top Grossing");
         topCategoryNames.add("Trending");
         topCategoryNames.add("Top paid");
+    }
+
+    public void setTopCategoryTab(View view){
+        arrayListsAllGames = new ArrayList<>();
+        singleItem = new ArrayList<SingleGameModel>();
+        singleItem2 = new ArrayList<SingleGameModel>();
+        for (int j = 0; j <= 5; j++) {
+            singleItem.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
+        }
+        for (int j = 6; j <= 11; j++) {
+            singleItem2.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
+        }
+        arrayListsAllGames.add(singleItem);
+        arrayListsAllGames.add(singleItem2);
+        topListGamesCategoryRv = view.findViewById(R.id.top_category_games_list);
+        final RecyclerViewTopGamesAdapter adapters = new RecyclerViewTopGamesAdapter(getActivity(), singleItem);
+        topListGamesCategoryRv.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
+        topListGamesCategoryRv.setHasFixedSize(true);
+        topListGamesCategoryRv.setAdapter(adapters);
+
+        topGamesCategoryRv = view.findViewById(R.id.top_category_games);
+        final CategoryTopRecyclerView adapter = new CategoryTopRecyclerView(topCategoryNames, getActivity(), new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                    adapters.setTopGamesList(arrayListsAllGames.get(position));
+                    adapters.notifyDataSetChanged();
+            }
+        });
+        topGamesCategoryRv.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        topGamesCategoryRv.setHasFixedSize(true);
+        topGamesCategoryRv.setAdapter(adapter);
+    }
+    public void setListTopCategory(View view){
+
     }
 }

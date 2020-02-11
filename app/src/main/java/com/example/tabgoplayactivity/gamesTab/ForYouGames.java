@@ -58,7 +58,6 @@ public class ForYouGames extends Fragment {
     }
 
 
-
     public void createDummyData() {
         allSampleGameData = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {

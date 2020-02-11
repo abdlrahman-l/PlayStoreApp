@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.listener.ClickListener;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -17,13 +19,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CategoryTopRecyclerView extends RecyclerView.Adapter<CategoryTopRecyclerView.ViewHolder> {
 
+    private final ClickListener listener;
     private ArrayList<String> topCategoryName;
     private Context mContext;
     private int buttonState = 1;
 
-    public CategoryTopRecyclerView(ArrayList<String> topCategoryName, Context mContext){
+    public CategoryTopRecyclerView(ArrayList<String> topCategoryName, Context mContext, ClickListener listener){
         this.topCategoryName = topCategoryName;
         this.mContext = mContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,18 +41,6 @@ public class CategoryTopRecyclerView extends RecyclerView.Adapter<CategoryTopRec
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.btnTopCategory.setText(topCategoryName.get(position));
-        holder.btnTopCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                if(buttonState % 2 == 0){
-//                    holder.btnTopCategory.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_shape_top_category_clicked));
-//                }
-//                else{
-//                    holder.btnTopCategory.setBackground(mContext.getResources().getDrawable(R.drawable.rounded_shape_top_category));
-//                }
-//                buttonState++;
-            }
-        });
     }
 
     @Override
@@ -59,10 +51,26 @@ public class CategoryTopRecyclerView extends RecyclerView.Adapter<CategoryTopRec
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         protected Button btnTopCategory;
+        private WeakReference<ClickListener> listenerRef;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            listenerRef = new WeakReference<>(listener);
             btnTopCategory = itemView.findViewById(R.id.btn_top_category);
+            btnTopCategory.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition());
+                }
+            });
         }
+    }
+
+    public ArrayList<String> getTopCategoryName() {
+        return topCategoryName;
+    }
+
+    public void setTopCategoryName(ArrayList<String> topCategoryName) {
+        this.topCategoryName = topCategoryName;
     }
 }

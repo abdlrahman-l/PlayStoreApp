@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
 
 import java.util.ArrayList;
