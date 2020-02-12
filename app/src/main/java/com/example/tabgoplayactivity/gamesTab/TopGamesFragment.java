@@ -18,6 +18,7 @@ import com.example.tabgoplayactivity.adapter.CategoryTopRecyclerView;
 import com.example.tabgoplayactivity.adapter.RecyclerViewTopGamesAdapter;
 import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class TopGamesFragment extends Fragment {
     private ArrayList<ArrayList<SingleGameModel>> arrayListsAllGames;
     private ArrayList<SingleGameModel> singleItem;
     private ArrayList<SingleGameModel> singleItem2;
+    private ChipGroup chipGroup;
     public TopGamesFragment() {
         // Required empty public constructor
     }
@@ -47,8 +49,8 @@ public class TopGamesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        chipGroup = view.findViewById(R.id.chip_group);
         declareTopCategoryNames();
-        setListTopCategory(view);
         setTopCategoryTab(view);
     }
 
@@ -89,8 +91,5 @@ public class TopGamesFragment extends Fragment {
         topGamesCategoryRv.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         topGamesCategoryRv.setHasFixedSize(true);
         topGamesCategoryRv.setAdapter(adapter);
-    }
-    public void setListTopCategory(View view){
-
     }
 }
