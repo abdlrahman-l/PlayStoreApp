@@ -6,64 +6,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".gamesTab.TopGamesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+    <HorizontalScrollView
         android:scrollbars="none"
-        android:id="@+id/top_category_games"
+        android:id="@+id/horizontal_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group"
-        android:layout_below="@id/top_category_games"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <com.google.android.material.chip.Chip
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            />
+            app:chipSpacing="10dp"
+            app:singleSelection="true"
+            android:layout_marginTop="16dp">
 
-        <com.google.android.material.chip.Chip
-            android:theme="@style/Theme.MaterialComponents.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipStrokeColor="@android:color/darker_gray"
+                app:rippleColor="@color/colorPrimary"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Top Free"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                />
 
-        <com.google.android.material.chip.Chip
-            android:theme="@style/Theme.MaterialComponents.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_grossing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipStrokeColor="@android:color/darker_gray"
+                app:rippleColor="@color/colorPrimary"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Top Grossing"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_trending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rippleColor="@color/colorPrimary"
+                app:chipStrokeColor="@android:color/darker_gray"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Trending"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rippleColor="@color/colorPrimary"
+                app:chipStrokeColor="@android:color/darker_gray"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeWidth="1dp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Top paid"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                />
+        </com.google.android.material.chip.ChipGroup>
 
-        <com.google.android.material.chip.Chip
-            android:theme="@style/Theme.MaterialComponents.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <com.google.android.material.chip.Chip
-            android:theme="@style/Theme.MaterialComponents.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asdasdas"
-             />
-
-        <com.google.android.material.chip.Chip
-            android:theme="@style/Theme.MaterialComponents.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+    </HorizontalScrollView>
 
 
-    </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="5dp"
-        android:layout_below="@id/chip_group"
+        android:layout_below="@id/horizontal_scroll"
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:id="@+id/top_category_games_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
