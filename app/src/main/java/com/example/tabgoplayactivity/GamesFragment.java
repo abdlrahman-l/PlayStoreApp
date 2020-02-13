@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 
 import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
 import com.example.tabgoplayactivity.adapter.TabGameCategoryAdapter;
+import com.example.tabgoplayactivity.gamesTab.EditorChoiceGamesFragment;
 import com.example.tabgoplayactivity.gamesTab.ForYouGames;
 import com.example.tabgoplayactivity.gamesTab.TopGamesFragment;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
@@ -53,7 +54,8 @@ public class GamesFragment extends Fragment {
 
         movieTabLayout.getTabAt(0).setText("For you");
         movieTabLayout.getTabAt(1).setText("Top charts");
-        movieTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        movieTabLayout.getTabAt(2).setText("Editor's Choice");
+//        movieTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         movieTabLayout.setTabIndicatorFullWidth(false);
         movieViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(movieTabLayout));
     }
@@ -75,6 +77,7 @@ public class GamesFragment extends Fragment {
         TabGameCategoryAdapter categoryAdapter = new TabGameCategoryAdapter(getChildFragmentManager());
         categoryAdapter.addFragment(new ForYouGames());
         categoryAdapter.addFragment(new TopGamesFragment());
+        categoryAdapter.addFragment(new EditorChoiceGamesFragment());
         viewPager.setAdapter(categoryAdapter);
     }
 
