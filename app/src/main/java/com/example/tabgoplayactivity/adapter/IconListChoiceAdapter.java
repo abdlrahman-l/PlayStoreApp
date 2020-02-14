@@ -1,5 +1,6 @@
 package com.example.tabgoplayactivity.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class IconListChoiceAdapter extends RecyclerView.Adapter<IconListChoiceAdapter.RowHolder> {
 
-    ArrayList<SingleGameModel> listGames;
+    private ArrayList<SingleGameModel> listGames;
+    private Context mContext;
+
+    public IconListChoiceAdapter(ArrayList<SingleGameModel> listGames, Context mContext) {
+        this.listGames = listGames;
+        this.mContext = mContext;
+    }
 
     @NonNull
     @Override
@@ -27,7 +34,7 @@ public class IconListChoiceAdapter extends RecyclerView.Adapter<IconListChoiceAd
 
     @Override
     public void onBindViewHolder(@NonNull RowHolder holder, int position) {
-//        holder.iconImage.setImageResource();
+//        holder.iconImage.setImageResource(listGames.get(position).getGameIcon());
     }
 
     @Override

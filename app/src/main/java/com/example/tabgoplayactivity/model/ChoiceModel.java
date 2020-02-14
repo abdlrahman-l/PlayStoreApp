@@ -10,6 +10,12 @@ public class ChoiceModel implements Serializable {
     private String headerChoice;
     private ArrayList<SingleGameModel> gameChoiceList;
 
+    public ChoiceModel(int imageChoiceId, String headerChoice, ArrayList<SingleGameModel> gameChoiceList) {
+        this.imageChoiceId = imageChoiceId;
+        this.headerChoice = headerChoice;
+        this.gameChoiceList = gameChoiceList;
+    }
+
     public int getImageChoiceId() {
         return imageChoiceId;
     }

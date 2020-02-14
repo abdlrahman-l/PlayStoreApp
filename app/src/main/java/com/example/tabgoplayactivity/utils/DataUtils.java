@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.model.ChoiceModel;
+import com.example.tabgoplayactivity.model.SectionChoiceModel;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
+import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
 
 import java.util.ArrayList;
@@ -17,6 +20,36 @@ public class DataUtils {
     private static String topMoviePrice[];
     private static TypedArray topMoviePhoto;
     private static ArrayList<SingleMovieModel> topMoviesList;
+    private static ArrayList<ArrayList<SingleGameModel>> listGames = new ArrayList<>();
+    private static ArrayList<ArrayList<ChoiceModel>> listChoice = new ArrayList<>();
+    private static ArrayList<ArrayList<SectionChoiceModel>> listSectionChoice = new ArrayList<>();
+
+    private static void addListSectionChoice(){
+        
+    }
+
+    private static void addListChoices(){
+        for (int i = 0; i < 5; i++){
+            ArrayList<ChoiceModel> choice = new ArrayList<>();
+            choice.add(new ChoiceModel(0,"header description "+i,listGames.get(i)));
+            listChoice.add(choice);
+        }
+    }
+
+    private static void addListGames(){
+        for (int j = 0; j <= 5; j++) {
+            ArrayList<SingleGameModel> singleItem = new ArrayList<>();
+            singleItem.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
+            listGames.add(singleItem);
+        }
+    }
+
+    public static ArrayList<SectionChoiceModel> getDataChoice(){
+        addListGames();
+        addListChoices();
+
+        return listSectionChoice;
+    }
 
     private static void addMovieToList(){
         topMoviesList = new ArrayList<>();
@@ -40,5 +73,9 @@ public class DataUtils {
         topMoviePhoto = context.getResources().obtainTypedArray(R.array.top_movies_photo);
         addMovieToList();
         return topMoviesList;
+    }
+
+    public static void addSectionChoiceData(){
+
     }
 }
