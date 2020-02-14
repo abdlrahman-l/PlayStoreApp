@@ -7,6 +7,11 @@ public class SectionChoiceModel implements Serializable {
     private String headerTitle;
     private ArrayList<ChoiceModel> choiceList;
 
+    public SectionChoiceModel(String headerTitle, ArrayList<ChoiceModel> choiceList) {
+        this.headerTitle = headerTitle;
+        this.choiceList = choiceList;
+    }
+
     public String getHeaderTitle() {
         return headerTitle;
     }

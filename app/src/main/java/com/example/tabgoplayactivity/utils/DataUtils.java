@@ -25,7 +25,11 @@ public class DataUtils {
     private static ArrayList<ArrayList<SectionChoiceModel>> listSectionChoice = new ArrayList<>();
 
     private static void addListSectionChoice(){
-        
+        for (int i =0; i<5; i++){
+            ArrayList<SectionChoiceModel> sectionChoice = new ArrayList<>();
+            sectionChoice.add(new SectionChoiceModel("header "+i,listChoice.get(i)));
+            listSectionChoice.add(sectionChoice);
+        }
     }
 
     private static void addListChoices(){
@@ -44,9 +48,10 @@ public class DataUtils {
         }
     }
 
-    public static ArrayList<SectionChoiceModel> getDataChoice(){
+    public static ArrayList<ArrayList<SectionChoiceModel>> getDataChoice(){
         addListGames();
         addListChoices();
+        addListSectionChoice();
 
         return listSectionChoice;
     }
