@@ -27,7 +27,7 @@ public class IconListChoiceAdapter extends RecyclerView.Adapter<IconListChoiceAd
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_icon_choice,null,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_icon_choice,null);
         RowHolder rowHolder = new RowHolder(v);
         return rowHolder;
     }

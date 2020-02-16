@@ -22,33 +22,47 @@ public class DataUtils {
     private static ArrayList<SingleMovieModel> topMoviesList;
     private static ArrayList<ArrayList<SingleGameModel>> listGames = new ArrayList<>();
     private static ArrayList<ArrayList<ChoiceModel>> listChoice = new ArrayList<>();
-    private static ArrayList<ArrayList<SectionChoiceModel>> listSectionChoice = new ArrayList<>();
+    private static ArrayList<SectionChoiceModel> listSectionChoice = new ArrayList<>();
 
     private static void addListSectionChoice(){
         for (int i =0; i<5; i++){
             ArrayList<SectionChoiceModel> sectionChoice = new ArrayList<>();
-            sectionChoice.add(new SectionChoiceModel("header "+i,listChoice.get(i)));
-            listSectionChoice.add(sectionChoice);
+            listSectionChoice.add(new SectionChoiceModel("header "+i,listChoice.get(i)));
         }
     }
 
     private static void addListChoices(){
         for (int i = 0; i < 5; i++){
             ArrayList<ChoiceModel> choice = new ArrayList<>();
-            choice.add(new ChoiceModel(0,"header description "+i,listGames.get(i)));
+            for (int j = 0; j < 4;j++){
+                choice.add(new ChoiceModel(0,"header description "+j,listGames.get(i)));
+            }
             listChoice.add(choice);
         }
     }
 
     private static void addListGames(){
-        for (int j = 0; j <= 5; j++) {
+        for (int i = 0; i <= 5; i++) {
             ArrayList<SingleGameModel> singleItem = new ArrayList<>();
-            singleItem.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
+            for (int j = 0; j < 4; j++){
+                singleItem.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
+            }
             listGames.add(singleItem);
         }
     }
 
-    public static ArrayList<ArrayList<SectionChoiceModel>> getDataChoice(){
+    public static ArrayList<ArrayList<SingleGameModel>> getListGames(){
+        addListGames();
+        return listGames;
+    }
+
+    public static ArrayList<ArrayList<ChoiceModel>> getListChoice(){
+        addListGames();
+        addListChoices();
+        return listChoice;
+    }
+
+    public static ArrayList<SectionChoiceModel> getDataChoice(){
         addListGames();
         addListChoices();
         addListSectionChoice();

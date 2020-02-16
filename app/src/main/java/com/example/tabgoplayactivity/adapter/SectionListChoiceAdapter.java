@@ -22,7 +22,7 @@ public class SectionListChoiceAdapter extends RecyclerView.Adapter<SectionListCh
     private ArrayList<ChoiceModel> choiceList;
     private Context mContext;
 
-    public SectionListChoiceAdapter(ArrayList<SectionChoiceModel> choiceList, Context mContext) {
+    public SectionListChoiceAdapter(ArrayList<ChoiceModel> choiceList, Context mContext) {
         this.choiceList = choiceList;
         this.mContext = mContext;
     }
@@ -30,7 +30,7 @@ public class SectionListChoiceAdapter extends RecyclerView.Adapter<SectionListCh
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_section_choice,null,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_section_choice,null);
         RowHolder rowHolder = new RowHolder(v);
         return rowHolder;
     }
@@ -56,9 +56,9 @@ public class SectionListChoiceAdapter extends RecyclerView.Adapter<SectionListCh
         protected TextView singleTextChoice;
         public RowHolder(@NonNull View itemView) {
             super(itemView);
-            imageChoice = itemView.findViewById(R.id.single_image_choice);
-            singleTextChoice = itemView.findViewById(R.id.single_text_choice);
-            iconAppChoice = itemView.findViewById(R.id.image_choice_cv);
+            this.imageChoice = itemView.findViewById(R.id.single_image_choice);
+            this.singleTextChoice = itemView.findViewById(R.id.single_text_choice);
+            this.iconAppChoice = itemView.findViewById(R.id.recycler_list_app);
         }
     }
 }
