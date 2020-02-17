@@ -63,9 +63,11 @@ public class DataUtils {
     }
 
     public static ArrayList<SectionChoiceModel> getDataChoice(){
-        addListGames();
-        addListChoices();
-        addListSectionChoice();
+        if (listSectionChoice.isEmpty()){
+            addListGames();
+            addListChoices();
+            addListSectionChoice();
+        }
 
         return listSectionChoice;
     }
