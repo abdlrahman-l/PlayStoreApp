@@ -1,25 +1,34 @@
 package com.example.tabgoplayactivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.lapism.searchview.Search;
 import com.lapism.searchview.widget.SearchView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public final static int GAME_CAROUSEL = 23212;
     public final static int APP_CAROUSEL = 23012;
@@ -27,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     protected SearchView searchView;
     private RelativeLayout rlSearch;
+    private DrawerLayout navDrawer;
+
 
     TabGoplayAdapter tabGooglePlayAdapter;
     @Override
@@ -37,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         searchView = findViewById(R.id.searchView);
         rlSearch = findViewById(R.id.rlSearch);
-
+        navDrawer = findViewById(R.id.drawer_layout);
+        final Activity activity = this;
+        searchView.setOnLogoClickListener(new Search.OnLogoClickListener() {
+            @Override
+            public void onLogoClick() {
+//                Toast.makeText(activity,"asdas",Toast.LENGTH_SHORT).show();
+                if(!navDrawer.isDrawerOpen(Gravity.START)) navDrawer.openDrawer(Gravity.START);
+                else navDrawer.closeDrawer(Gravity.END);
+            }
+        });
         setupTabLayout();
     }
 
@@ -136,4 +156,18 @@ public class MainActivity extends AppCompatActivity {
         return searchView;
     }
 
+    @Override
+    public void onBackPressed() {
+        if (navDrawer.isDrawerOpen(GravityCompat.START)) {
+            navDrawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
 }
