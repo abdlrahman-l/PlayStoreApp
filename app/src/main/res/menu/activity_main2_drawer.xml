@@ -3,36 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/section_1">
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Importssss" />
+            android:title="My apps &amp; games" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Notifications" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Subscriptions" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Wishlist" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group android:id="@+id/section_2">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Account" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Payment methods" />
+        <item
+            android:icon="@drawable/ic_menu_send"
+            android:title="Play Protect" />
+        <item
+            android:icon="@drawable/ic_menu_send"
+            android:title="Settings" />
+    </group>
+
+    <group android:id="@+id/section_3">
+        <item
+            android:icon="@drawable/ic_menu_send"
+            android:title="Open Movies app" />
+        <item
+            android:icon="@drawable/ic_menu_send"
+            android:title="Open Books app" />
+    </group>
+
+    <group android:id="@+id/section_4">
+        <item
+            android:title="Reedem" />
+        <item
+            android:title="Help &amp; feedback" />
+        <item
+            android:title="Parent Guide" />
+        <item
+            android:title="About Google Play" />
+    </group>
+
+
+
 
 </menu>

@@ -18,8 +18,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/joker"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_width="1dp"
+        app:civ_border_color="#aaa"/>
 
     <TextView
         android:layout_width="match_parent"
