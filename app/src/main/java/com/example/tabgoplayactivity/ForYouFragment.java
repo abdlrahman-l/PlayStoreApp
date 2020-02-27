@@ -1,13 +1,13 @@
 package com.example.tabgoplayactivity;
 
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
-import com.example.tabgoplayactivity.model.SingleGameModel;
-import com.example.tabgoplayactivity.model.SingleMovieModel;
+import com.example.tabgoplayactivity.utils.CommonUtils;
 import com.example.tabgoplayactivity.utils.DataUtils;
 
 import java.util.ArrayList;
@@ -50,7 +50,12 @@ public class ForYouFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_for_you, container, false);
         sectionRecyclerView = view.findViewById(R.id.section_for_movie);
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-        RecyclerViewPerSectionAdapter adapters = new RecyclerViewPerSectionAdapter(allSampleData,getActivity(),FOR_YOU_MOVIES);
+        RecyclerViewPerSectionAdapter adapters = new RecyclerViewPerSectionAdapter(allSampleData, getActivity(), FOR_YOU_MOVIES, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                CommonUtils.goToSectionDetail(getActivity(),position,allSampleData);
+            }
+        });
         adapters.setFm(getChildFragmentManager());
         adapters.notifyDataSetChanged();
         sectionRecyclerView.setAdapter(adapters);

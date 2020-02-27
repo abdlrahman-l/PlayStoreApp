@@ -2,27 +2,25 @@ package com.example.tabgoplayactivity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tabgoplayactivity.ForYouFragment;
-import com.example.tabgoplayactivity.GamesFragment;
 import com.example.tabgoplayactivity.MainActivity;
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.gamesTab.ForYouGames;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -37,18 +35,21 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
     private int whichFragment;
     private int appOrGame;
     private FragmentManager fm;
+    private final ClickListener listener;
 
-    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment) {
+    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment, ClickListener listener) {
         this.dataList = dataList;
         this.mContext = mContext;
         this.whichFragment = whichFragment;
+        this.listener = listener;
     }
 
-    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment, int appOrGame) {
+    public RecyclerViewPerSectionAdapter(ArrayList<SectionDataGameModel> dataList, Context mContext, int whichFragment, int appOrGame, ClickListener listener) {
         this.dataList = dataList;
         this.mContext = mContext;
         this.whichFragment = whichFragment;
         this.appOrGame = appOrGame;
+        this.listener = listener;
     }
 
     @NonNull
@@ -69,17 +70,6 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
             holder.descriptionTitle.setText(dataList.get(position).getDescriptionTitle());
         }
         setAdapter(position,holder);
-        holder.sectionContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent detailsSection = new Intent(mContext, SectionDetailsActivity.class);
-                if (dataList.get(position).getAllMoviesInSection() != null)
-                    detailsSection.putExtra(SectionDetailsActivity.MOVIES_SECTION_LIST,dataList.get(position).getAllMoviesInSection());
-                else if (dataList.get(position).getAllItemsInSection() != null)
-                    detailsSection.putExtra(SectionDetailsActivity.GAMES_SECTION_LIST,dataList.get(position).getAllItemsInSection());
-                mContext.startActivity(detailsSection);
-            }
-        });
         holder.sectionRecyclerView.setHasFixedSize(true);
         holder.sectionRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.HORIZONTAL,false));
 
@@ -134,20 +124,28 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
         return (null != dataList ? dataList.size() : 0);
     }
 
-    public static class ItemRowHolder extends RecyclerView.ViewHolder {
+    public class ItemRowHolder extends RecyclerView.ViewHolder {
         protected TextView sectionTitle;
         protected TextView descriptionTitle;
         protected RecyclerView sectionRecyclerView;
         protected ImageView btnMore;
         protected RelativeLayout sectionContainer;
+        protected WeakReference<ClickListener> listenerRef;
 
         public ItemRowHolder(@NonNull View itemView) {
             super(itemView);
+            this.listenerRef = new WeakReference<>(listener);
             this.sectionTitle = itemView.findViewById(R.id.item_title);
             this.btnMore = itemView.findViewById(R.id.btn_next);
             this.descriptionTitle = itemView.findViewById(R.id.item_title_description);
             this.sectionRecyclerView = itemView.findViewById(R.id.game_recycler_view);
             this.sectionContainer = itemView.findViewById(R.id.section_container);
+            this.sectionContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition());
+                }
+            });
         }
     }
 

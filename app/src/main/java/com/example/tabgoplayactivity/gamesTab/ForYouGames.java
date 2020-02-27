@@ -1,6 +1,7 @@
 package com.example.tabgoplayactivity.gamesTab;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,12 @@ import android.view.ViewGroup;
 
 import com.example.tabgoplayactivity.MainActivity;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.utils.CommonUtils;
 import com.lapism.searchview.widget.SearchView;
 
 import java.util.ArrayList;
@@ -50,7 +54,12 @@ public class ForYouGames extends Fragment {
         createDummyData();
         RecyclerView sectionRecyclerView = view.findViewById(R.id.section_recycler_view);
         sectionRecyclerView.setHasFixedSize(true);
-        RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData,getActivity(),FOR_YOU_GAMES, MainActivity.GAME_CAROUSEL);
+        RecyclerViewPerSectionAdapter adapter = new RecyclerViewPerSectionAdapter(allSampleGameData, getActivity(), FOR_YOU_GAMES, MainActivity.GAME_CAROUSEL, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                CommonUtils.goToSectionDetail(getActivity(),position,allSampleGameData);
+            }
+        });
         adapter.setFm(getChildFragmentManager());
         adapter.notifyDataSetChanged();
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
