@@ -1,7 +1,6 @@
 package com.example.tabgoplayactivity.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,12 @@ import android.widget.Toast;
 import com.example.tabgoplayactivity.ForYouFragment;
 import com.example.tabgoplayactivity.MainActivity;
 import com.example.tabgoplayactivity.R;
-import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.gamesTab.ForYouGames;
 import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
+import com.example.tabgoplayactivity.utils.CommonUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -109,7 +108,12 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
                         break;
                     case ForYouGames.FOR_YOU_GAMES:
                         ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
-                        SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames,mContext,fm);
+                        SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames, mContext, fm, new ClickListener() {
+                            @Override
+                            public void onPositionClicked(int position) {
+                                CommonUtils.goToDetail(mContext);
+                            }
+                        });
                         sectionListAdapter.notifyDataSetChanged();
                         holder.sectionRecyclerView.setAdapter(sectionListAdapter);
                         break;

@@ -3,6 +3,7 @@ package com.example.tabgoplayactivity.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.tabgoplayactivity.DetailsActivity;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 
@@ -17,6 +18,11 @@ public class CommonUtils {
         else if (allSampleData.get(position).getAllItemsInSection() != null)
             detailsSection.putExtra(SectionDetailsActivity.GAMES_SECTION_LIST,allSampleData.get(position).getAllItemsInSection());
         context.startActivity(detailsSection);
+    }
+
+    public static void goToDetail(Context context){
+        Intent detailIntent = new Intent(context, DetailsActivity.class);
+        context.startActivity(detailIntent);
     }
 
 }

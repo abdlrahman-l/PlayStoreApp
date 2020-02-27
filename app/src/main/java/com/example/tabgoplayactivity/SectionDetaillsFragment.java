@@ -1,24 +1,26 @@
 package com.example.tabgoplayactivity;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
-import com.example.tabgoplayactivity.adapter.RecyclerViewTopMoviesAdapter;
 import com.example.tabgoplayactivity.adapter.SectionListGameAdapter;
 import com.example.tabgoplayactivity.adapter.SectionListMovieAdapter;
-import com.example.tabgoplayactivity.utils.DataUtils;
+import com.example.tabgoplayactivity.listener.ClickListener;
+import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.utils.CommonUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,7 +29,6 @@ import com.example.tabgoplayactivity.utils.DataUtils;
 public class SectionDetaillsFragment extends Fragment {
 
     RecyclerView recyclerView;
-
     public SectionDetaillsFragment() {
         // Required empty public constructor
     }
@@ -51,7 +52,13 @@ public class SectionDetaillsFragment extends Fragment {
             recyclerView.setAdapter(adapter);
         }
         else {
-            SectionListGameAdapter adapter = new SectionListGameAdapter(((SectionDetailsActivity)getActivity()).getGameSectionList(),getActivity(),getChildFragmentManager());
+            ArrayList<SingleGameModel> listGame =  ((SectionDetailsActivity)getActivity()).getGameSectionList();
+            SectionListGameAdapter adapter = new SectionListGameAdapter(listGame, getActivity(), getChildFragmentManager(), new ClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
+                    CommonUtils.goToDetail(getActivity());
+                }
+            });
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
             recyclerView.setAdapter(adapter);
         }

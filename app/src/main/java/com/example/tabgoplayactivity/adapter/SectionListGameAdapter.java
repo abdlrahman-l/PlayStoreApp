@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import com.example.tabgoplayactivity.BottomSheetDialog;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -22,11 +24,13 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
     private ArrayList<SingleGameModel> gameList;
     private Context mContext;
     private FragmentManager fm;
+    private ClickListener listener;
 
-    public SectionListGameAdapter(ArrayList<SingleGameModel> gameList, Context mContext, FragmentManager fm) {
+    public SectionListGameAdapter(ArrayList<SingleGameModel> gameList, Context mContext, FragmentManager fm, ClickListener listener) {
         this.gameList = gameList;
         this.mContext = mContext;
         this.fm = fm;
+        this.listener = listener;
     }
 
     @NonNull
@@ -43,15 +47,6 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
         final SingleGameModel singleGame = gameList.get(position);
         holder.gameName.setText(singleGame.getGameName());
         holder.gameSize.setText(singleGame.getGameSize());
-        holder.gameContainer.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                BottomSheetDialog dialog = new BottomSheetDialog();
-                dialog.setSingleGame(singleGame);
-                dialog.show(fm,"test");
-                return true;
-            }
-        });
     }
 
     @Override
@@ -63,12 +58,29 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
         protected TextView gameName;
         protected TextView gameSize;
         protected LinearLayout gameContainer;
+        protected WeakReference<ClickListener> listenerRef;
 
         public SingleGameRowHolder(@NonNull View itemView) {
             super(itemView);
+            this.listenerRef = new WeakReference<>(listener);
             this.gameName = itemView.findViewById(R.id.game_title);
             this.gameSize = itemView.findViewById(R.id.game_size);
             this.gameContainer = itemView.findViewById(R.id.single_game_container);
+            this.gameContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition());
+                }
+            });
+            this.gameContainer.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    BottomSheetDialog dialog = new BottomSheetDialog();
+                    dialog.setSingleGame(gameList.get(getAdapterPosition()));
+                    dialog.show(fm,"test");
+                    return true;
+                }
+            });
         }
     }
 }

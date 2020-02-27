@@ -45,15 +45,6 @@ public class SectionListMovieAdapter extends RecyclerView.Adapter<SectionListMov
         holder.ratingMovie.setText(singleMovie.getRating());
         holder.priceMovie.setText(singleMovie.getPrice());
         holder.imageMovie.setImageResource(singleMovie.getImage());
-        holder.movieContainer.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                BottomSheetDialog dialog = new BottomSheetDialog();
-                dialog.setSingleMovie(singleMovie);
-                dialog.show(fm,"test");
-                return true;
-            }
-        });
     }
 
     @Override
@@ -72,6 +63,15 @@ public class SectionListMovieAdapter extends RecyclerView.Adapter<SectionListMov
             priceMovie = itemView.findViewById(R.id.price_movie);
             imageMovie = itemView.findViewById(R.id.image_movie);
             movieContainer = itemView.findViewById(R.id.single_movie_container);
+            movieContainer.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    BottomSheetDialog dialog = new BottomSheetDialog();
+                    dialog.setSingleMovie(movieList.get(getAdapterPosition()));
+                    dialog.show(fm,"test");
+                    return true;
+                }
+            });
         }
     }
 }
