@@ -107,11 +107,11 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
 
                         break;
                     case ForYouGames.FOR_YOU_GAMES:
-                        ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
+                        final ArrayList<SingleGameModel> singleSectionGames = dataList.get(position).getAllItemsInSection();
                         SectionListGameAdapter sectionListAdapter = new SectionListGameAdapter(singleSectionGames, mContext, fm, new ClickListener() {
                             @Override
                             public void onPositionClicked(int position) {
-                                CommonUtils.goToDetail(mContext);
+                                CommonUtils.goToGameDetail(mContext,singleSectionGames.get(position));
                             }
                         });
                         sectionListAdapter.notifyDataSetChanged();

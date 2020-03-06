@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.example.tabgoplayactivity.DetailsActivity;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
+import com.example.tabgoplayactivity.model.SingleGameModel;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,9 @@ public class CommonUtils {
         context.startActivity(detailsSection);
     }
 
-    public static void goToDetail(Context context){
+    public static void goToGameDetail(Context context, SingleGameModel singleGame){
         Intent detailIntent = new Intent(context, DetailsActivity.class);
+        detailIntent.putExtra(DetailsActivity.GAME_DETAILS,singleGame);
         context.startActivity(detailIntent);
     }
 

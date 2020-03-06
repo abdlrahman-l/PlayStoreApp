@@ -3,11 +3,16 @@ package com.example.tabgoplayactivity;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.tabgoplayactivity.model.SingleGameModel;
 
 
 /**
@@ -15,6 +20,8 @@ import android.view.ViewGroup;
  */
 public class DetailFragment extends Fragment {
 
+    private SingleGameModel singleGame;
+    private TextView detailName,detailName2;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -28,4 +35,13 @@ public class DetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        detailName = view.findViewById(R.id.name_detail);
+        detailName2 = view.findViewById(R.id.name_detail_2);
+        singleGame = ((DetailsActivity)getActivity()).getSingleGame();
+        detailName.setText(singleGame.getGameName());
+        detailName2.setText(singleGame.getGameName());
+    }
 }

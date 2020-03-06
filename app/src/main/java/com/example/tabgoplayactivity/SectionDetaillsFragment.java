@@ -1,7 +1,6 @@
 package com.example.tabgoplayactivity;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,11 +51,11 @@ public class SectionDetaillsFragment extends Fragment {
             recyclerView.setAdapter(adapter);
         }
         else {
-            ArrayList<SingleGameModel> listGame =  ((SectionDetailsActivity)getActivity()).getGameSectionList();
+            final ArrayList<SingleGameModel> listGame =  ((SectionDetailsActivity)getActivity()).getGameSectionList();
             SectionListGameAdapter adapter = new SectionListGameAdapter(listGame, getActivity(), getChildFragmentManager(), new ClickListener() {
                 @Override
                 public void onPositionClicked(int position) {
-                    CommonUtils.goToDetail(getActivity());
+                    CommonUtils.goToGameDetail(getActivity(),listGame.get(position));
                 }
             });
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
