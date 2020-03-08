@@ -57,6 +57,11 @@ public class SectionDetaillsFragment extends Fragment {
                 public void onPositionClicked(int position) {
                     CommonUtils.goToGameDetail(getActivity(),listGame.get(position));
                 }
+
+                @Override
+                public void onPositionClicked(int position, int position2) {
+
+                }
             });
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
             recyclerView.setAdapter(adapter);

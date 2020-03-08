@@ -22,6 +22,7 @@ import com.example.tabgoplayactivity.adapter.CategoryTopRecyclerView;
 import com.example.tabgoplayactivity.adapter.RecyclerViewTopGamesAdapter;
 import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.utils.CommonUtils;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -91,7 +92,17 @@ public class TopGamesFragment extends Fragment {
         arrayListsAllGames.add(singleItem2);
         arrayListsAllGames.add(singleItem3);
         topListGamesCategoryRv = view.findViewById(R.id.top_category_games_list);
-        final RecyclerViewTopGamesAdapter adapters = new RecyclerViewTopGamesAdapter(getActivity(), singleItem);
+        final RecyclerViewTopGamesAdapter adapters = new RecyclerViewTopGamesAdapter(getActivity(), singleItem, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+
+            }
+
+            @Override
+            public void onPositionClicked(int position, int position2) {
+                CommonUtils.goToGameDetail(getActivity(),arrayListsAllGames.get(position2).get(position));
+            }
+        });
         topListGamesCategoryRv.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         topListGamesCategoryRv.setHasFixedSize(true);
         topListGamesCategoryRv.setAdapter(adapters);
@@ -104,6 +115,7 @@ public class TopGamesFragment extends Fragment {
                     topListGamesCategoryRv.setLayoutAnimation(animation);
                     adapters.setTopGamesList(arrayListsAllGames.get(finalI));
                     adapters.notifyDataSetChanged();
+                    adapters.setChipPosition(finalI);
                 }
             });
         }

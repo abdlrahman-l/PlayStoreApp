@@ -59,6 +59,11 @@ public class ForYouGames extends Fragment {
             public void onPositionClicked(int position) {
                 CommonUtils.goToSectionDetail(getActivity(),position,allSampleGameData);
             }
+
+            @Override
+            public void onPositionClicked(int position, int position2) {
+
+            }
         });
         adapter.setFm(getChildFragmentManager());
         adapter.notifyDataSetChanged();

@@ -55,6 +55,11 @@ public class ForYouFragment extends Fragment {
             public void onPositionClicked(int position) {
                 CommonUtils.goToSectionDetail(getActivity(),position,allSampleData);
             }
+
+            @Override
+            public void onPositionClicked(int position, int position2) {
+
+            }
         });
         adapters.setFm(getChildFragmentManager());
         adapters.notifyDataSetChanged();

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.R;
@@ -21,10 +22,13 @@ public class RecyclerViewTopGamesAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private Context mContext;
     private ArrayList<SingleGameModel> topGamesList;
+    private ClickListener listener;
+    private int chipPosition = 0;
 
-    public RecyclerViewTopGamesAdapter(Context mContext, ArrayList<SingleGameModel> topGamesList) {
+    public RecyclerViewTopGamesAdapter(Context mContext, ArrayList<SingleGameModel> topGamesList, ClickListener listener) {
         this.mContext = mContext;
         this.topGamesList = topGamesList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -53,6 +57,8 @@ public class RecyclerViewTopGamesAdapter extends RecyclerView.Adapter<RecyclerVi
 
         protected ImageView iconGame;
         protected TextView nameGame,ratingGame,sizeGame,numberPosition;
+        protected WeakReference<ClickListener> listenerRef;
+        protected LinearLayout container;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +67,14 @@ public class RecyclerViewTopGamesAdapter extends RecyclerView.Adapter<RecyclerVi
             ratingGame = itemView.findViewById(R.id.rating_game);
             sizeGame = itemView.findViewById(R.id.size_game);
             numberPosition = itemView.findViewById(R.id.number_top_game);
+            listenerRef = new WeakReference<>(listener);
+            container = itemView.findViewById(R.id.single_game_container);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition(),chipPosition);
+                }
+            });
         }
     }
 
@@ -72,4 +86,11 @@ public class RecyclerViewTopGamesAdapter extends RecyclerView.Adapter<RecyclerVi
         this.topGamesList = topGamesList;
     }
 
+    public int getChipPosition() {
+        return chipPosition;
+    }
+
+    public void setChipPosition(int chipPosition) {
+        this.chipPosition = chipPosition;
+    }
 }

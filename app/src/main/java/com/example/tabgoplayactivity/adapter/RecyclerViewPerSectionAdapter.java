@@ -113,6 +113,11 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
                             public void onPositionClicked(int position) {
                                 CommonUtils.goToGameDetail(mContext,singleSectionGames.get(position));
                             }
+
+                            @Override
+                            public void onPositionClicked(int position, int position2) {
+
+                            }
                         });
                         sectionListAdapter.notifyDataSetChanged();
                         holder.sectionRecyclerView.setAdapter(sectionListAdapter);
