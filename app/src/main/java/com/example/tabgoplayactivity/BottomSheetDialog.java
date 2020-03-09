@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     private LinearLayout btnMovieContainer;
     private RelativeLayout movieContainer;
     private RelativeLayout imageGameLayout;
+    private ImageView imageMovie;
     private SingleGameModel singleGame;
     private SingleMovieModel singleMovie;
 
@@ -50,6 +52,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             buySd = view.findViewById(R.id.buy_sd);
             btnMovieContainer = view.findViewById(R.id.btn_movie_layout);
             movieContainer = view.findViewById(R.id.image_movie_layout);
+            imageMovie = view.findViewById(R.id.image_film);
             btnInstall = view.findViewById(R.id.btn_install);
             imageGameLayout = view.findViewById(R.id.image_game_layout);
             nameMovie = view.findViewById(R.id.name_movie);
@@ -62,6 +65,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             buySd.setText(harga);
             nameMovie.setText(getSingleMovie().getTitle());
             categoryMovie.setText(getSingleMovie().getCategory());
+            imageMovie.setImageResource(getSingleMovie().getImage());
         }
     }
 

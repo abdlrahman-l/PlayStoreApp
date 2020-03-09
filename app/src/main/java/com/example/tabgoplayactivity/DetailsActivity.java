@@ -17,7 +17,9 @@ import java.util.ArrayList;
 public class DetailsActivity extends AppCompatActivity {
 
     public static final String GAME_DETAILS = "GameDetailsKey";
+    public static final String MOVIE_DETAILS = "MovieDetailsKey";
     protected SingleGameModel singleGame;
+    protected SingleMovieModel singleMovie;
     private NavHostFragment navHostFragment;
     private NavInflater navInflater;
     private NavGraph navGraph;
@@ -34,6 +36,9 @@ public class DetailsActivity extends AppCompatActivity {
         if (getIntent().getSerializableExtra(GAME_DETAILS) != null){
             singleGame = (SingleGameModel) getIntent().getSerializableExtra(GAME_DETAILS);
             navGraph.setStartDestination(R.id.detail_fragment);
+        } else if (getIntent().getSerializableExtra(MOVIE_DETAILS) != null){
+            singleMovie = (SingleMovieModel) getIntent().getSerializableExtra(MOVIE_DETAILS);
+            navGraph.setStartDestination(R.id.movie_detail_fragment);
         }
         navController.setGraph(navGraph);
     }
@@ -42,4 +47,7 @@ public class DetailsActivity extends AppCompatActivity {
         return singleGame;
     }
 
+    public SingleMovieModel getSingleMovie() {
+        return singleMovie;
+    }
 }

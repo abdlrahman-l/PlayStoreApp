@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.example.tabgoplayactivity.BottomSheetDialog;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -23,11 +25,13 @@ public class SectionListMovieAdapter extends RecyclerView.Adapter<SectionListMov
     private ArrayList<SingleMovieModel> movieList;
     private Context mContext;
     private FragmentManager fm;
+    private ClickListener listener;
 
-    public SectionListMovieAdapter(ArrayList<SingleMovieModel> movieList, Context mContext, FragmentManager fm) {
+    public SectionListMovieAdapter(ArrayList<SingleMovieModel> movieList, Context mContext, FragmentManager fm, ClickListener listener) {
         this.movieList = movieList;
         this.mContext = mContext;
         this.fm = fm;
+        this.listener = listener;
     }
 
     @NonNull
@@ -56,6 +60,7 @@ public class SectionListMovieAdapter extends RecyclerView.Adapter<SectionListMov
         protected TextView titleMovie, ratingMovie, priceMovie;
         protected ImageView imageMovie;
         protected LinearLayout movieContainer;
+        protected WeakReference<ClickListener> listenerRef;
         public RowHolder(@NonNull View itemView) {
             super(itemView);
             titleMovie = itemView.findViewById(R.id.title_movie);
@@ -63,6 +68,13 @@ public class SectionListMovieAdapter extends RecyclerView.Adapter<SectionListMov
             priceMovie = itemView.findViewById(R.id.price_movie);
             imageMovie = itemView.findViewById(R.id.image_movie);
             movieContainer = itemView.findViewById(R.id.single_movie_container);
+            listenerRef = new WeakReference<>(listener);
+            movieContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition());
+                }
+            });
             movieContainer.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

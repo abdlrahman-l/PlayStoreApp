@@ -12,4 +12,11 @@
         tools:layout="@layout/fragment_detail"
         />
 
+    <fragment
+        android:id="@+id/movie_detail_fragment"
+        android:name="com.example.tabgoplayactivity.MovieDetailsFragment"
+        android:label="movie_fragment_detail"
+        tools:layout="@layout/fragment_movie_details"
+        />
+
 </navigation>

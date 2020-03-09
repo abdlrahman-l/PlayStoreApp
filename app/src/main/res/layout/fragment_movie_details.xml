@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MovieDetailsFragment">
+
+    <RelativeLayout
+        android:id="@+id/image_movie_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        >
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image_movie_container"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_movie_details"
+                android:layout_width="80dp"
+                android:layout_height="120dp"
+                android:src="@drawable/joker"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name_movie_details"
+            android:layout_toRightOf="@id/image_movie_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Joker"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_toRightOf="@id/image_movie_container"
+            android:layout_below="@+id/name_movie_details"
+            android:text="Drama"
+            android:id="@+id/category_movie_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

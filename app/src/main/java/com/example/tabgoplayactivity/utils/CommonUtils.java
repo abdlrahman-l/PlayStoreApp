@@ -7,6 +7,7 @@ import com.example.tabgoplayactivity.DetailsActivity;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.model.SingleMovieModel;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,12 @@ public class CommonUtils {
     public static void goToGameDetail(Context context, SingleGameModel singleGame){
         Intent detailIntent = new Intent(context, DetailsActivity.class);
         detailIntent.putExtra(DetailsActivity.GAME_DETAILS,singleGame);
+        context.startActivity(detailIntent);
+    }
+
+    public static void goToMovieDetail(Context context, SingleMovieModel singleMovie){
+        Intent detailIntent = new Intent(context, DetailsActivity.class);
+        detailIntent.putExtra(DetailsActivity.MOVIE_DETAILS,singleMovie);
         context.startActivity(detailIntent);
     }
 

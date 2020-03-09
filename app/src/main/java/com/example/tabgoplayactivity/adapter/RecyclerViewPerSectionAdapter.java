@@ -82,8 +82,19 @@ public class RecyclerViewPerSectionAdapter extends RecyclerView.Adapter<Recycler
 
     private void setAdapter(int position, ItemRowHolder holder){
         if (whichFragment == ForYouFragment.FOR_YOU_MOVIES){
-            ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
-            SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext,fm);
+            final ArrayList<SingleMovieModel> singleSectionMovies = dataList.get(position).getAllMoviesInSection();
+            ClickListener listener = new ClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
+                    CommonUtils.goToMovieDetail(mContext,singleSectionMovies.get(position));
+                }
+
+                @Override
+                public void onPositionClicked(int position, int position2) {
+
+                }
+            };
+            SectionListMovieAdapter sectionListMoviesAdapter = new SectionListMovieAdapter(singleSectionMovies,mContext,fm,listener);
             sectionListMoviesAdapter.notifyDataSetChanged();
             holder.sectionRecyclerView.setAdapter(sectionListMoviesAdapter);
         }

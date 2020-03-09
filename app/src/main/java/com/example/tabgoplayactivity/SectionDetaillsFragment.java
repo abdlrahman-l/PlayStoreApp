@@ -17,6 +17,7 @@ import com.example.tabgoplayactivity.adapter.SectionListGameAdapter;
 import com.example.tabgoplayactivity.adapter.SectionListMovieAdapter;
 import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.model.SingleMovieModel;
 import com.example.tabgoplayactivity.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -46,7 +47,18 @@ public class SectionDetaillsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.section_details_recycler);
         recyclerView.setHasFixedSize(true);
         if (((SectionDetailsActivity)getActivity()).getMovieSectionList() != null) {
-            SectionListMovieAdapter adapter = new SectionListMovieAdapter(((SectionDetailsActivity)getActivity()).getMovieSectionList(),getActivity(),getChildFragmentManager());
+            final ArrayList<SingleMovieModel> listMovies = ((SectionDetailsActivity)getActivity()).getMovieSectionList();
+            SectionListMovieAdapter adapter = new SectionListMovieAdapter(((SectionDetailsActivity) getActivity()).getMovieSectionList(), getActivity(), getChildFragmentManager(), new ClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
+                    CommonUtils.goToMovieDetail(getActivity(),listMovies.get(position));
+                }
+
+                @Override
+                public void onPositionClicked(int position, int position2) {
+
+                }
+            });
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false));
             recyclerView.setAdapter(adapter);
         }
