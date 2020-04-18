@@ -68,4 +68,9 @@ public class SingleGameModel implements Serializable {
     public void setGameCarousel(ArrayList<Integer> gameCarousel) {
         this.gameCarousel = gameCarousel;
     }
+
+    public void setGameFromResource(String name, int rating){
+        this.gameName = name;
+        this.gameRating = rating;
+    }
 }

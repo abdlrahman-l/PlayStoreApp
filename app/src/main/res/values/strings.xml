@@ -52,6 +52,32 @@
         <item>@array/darkness_carousel</item>
     </array>
 
+    <array name="game_model">
+        <item>@array/game_name</item>
+        <item>@array/game_rating</item>
+    </array>
+    
+    <string-array name="game_name">
+        <item>Garena AOV</item>
+        <item>PUBG Mobile</item>
+        <item>APEX Mobile</item>
+        <item>Darkness Rises</item>
+    </string-array>
+
+    <string-array name="game_rating">
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+    </string-array>
+
+    <array name="game_icon">
+        <item>@drawable/aov_icon</item>
+        <item>@drawable/pubg_icon</item>
+        <item>@drawable/apex_icon</item>
+        <item>@drawable/darkness_icon</item>
+    </array>
+
     <array name="aov_carousel">
         <item>@drawable/aov_carousel</item>
         <item>@drawable/aov_carousel2</item>

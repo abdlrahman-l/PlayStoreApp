@@ -49,6 +49,7 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
                     SingleGameModel singleGameModel = listGame.get(position);
                     holder.nameApp.setText(singleGameModel.getGameName());
                     holder.rateApp.setText(String.valueOf(singleGameModel.getGameRating()));
+                    holder.imageIcon.setImageResource(singleGameModel.getGameIcon());
                     AnimationDrawable animationDrawable = new AnimationDrawable();
                     for (int i =0; i < 4; i++){
                         BitmapDrawable drawable = (BitmapDrawable) mContext.getResources().getDrawable(singleGameModel.getGameCarousel().get(i));

@@ -25,6 +25,9 @@ public class DataUtils {
     private static ArrayList<SectionChoiceModel> listSectionChoice = new ArrayList<>();
     private static TypedArray nestedArrayGameCarousel;
     private static TypedArray gameCarousel;
+    private static TypedArray gameModel;
+    private static String gameName[];
+    private static String gameRating[];
 
     private static void addListSectionChoice(){
         for (int i =0; i<5; i++){
@@ -57,6 +60,8 @@ public class DataUtils {
         for (int j = 0; j < 4; j++){
             SingleGameModel singleGameModel = new SingleGameModel("Item " + j,j+" MB", "URL " + j);
             singleGameModel.setGameCarousel(getDataGameCarousel(j,context));
+            setGameModel(singleGameModel,j,context);
+            setGameIcon(singleGameModel,j,context);
             singleItem.add(singleGameModel);
         }
     }
@@ -118,6 +123,24 @@ public class DataUtils {
         }
 
         return gameCarouselId;
+    }
+
+    private static void setGameModel(SingleGameModel singleGameModel, int i, Context context){
+        gameModel = context.getResources().obtainTypedArray(R.array.game_model);
+        for (int j=0;j<gameModel.length();j++){
+            int resId = gameModel.getResourceId(j,-1);
+            gameName = context.getResources().getStringArray(resId);
+            if (j==0){
+                singleGameModel.setGameName(gameName[i]);
+            }else{
+                singleGameModel.setGameRating(Integer.parseInt(gameName[i]));
+            }
+        }
+    }
+
+    private static void setGameIcon(SingleGameModel singleGameModel, int j, Context context){
+        TypedArray gameIcon = context.getResources().obtainTypedArray(R.array.game_icon);
+        singleGameModel.setGameIcon(gameIcon.getResourceId(j,-1));
     }
 
     public static void addSectionChoiceData(){
