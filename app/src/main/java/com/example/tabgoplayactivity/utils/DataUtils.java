@@ -23,6 +23,8 @@ public class DataUtils {
     private static ArrayList<ArrayList<SingleGameModel>> listGames = new ArrayList<>();
     private static ArrayList<ArrayList<ChoiceModel>> listChoice = new ArrayList<>();
     private static ArrayList<SectionChoiceModel> listSectionChoice = new ArrayList<>();
+    private static TypedArray nestedArrayGameCarousel;
+    private static TypedArray gameCarousel;
 
     private static void addListSectionChoice(){
         for (int i =0; i<5; i++){
@@ -51,9 +53,18 @@ public class DataUtils {
         }
     }
 
-    public static ArrayList<ArrayList<SingleGameModel>> getListGames(){
-        addListGames();
-        return listGames;
+    private static void addListGames2(ArrayList<SingleGameModel> singleItem, Context context){
+        for (int j = 0; j < 4; j++){
+            SingleGameModel singleGameModel = new SingleGameModel("Item " + j,j+" MB", "URL " + j);
+            singleGameModel.setGameCarousel(getDataGameCarousel(j,context));
+            singleItem.add(singleGameModel);
+        }
+    }
+
+    public static ArrayList<SingleGameModel> getListGames(Context context){
+        ArrayList<SingleGameModel> singleGameModels = new ArrayList<>();
+        addListGames2(singleGameModels, context);
+        return singleGameModels;
     }
 
     public static ArrayList<ArrayList<ChoiceModel>> getListChoice(){
@@ -94,6 +105,19 @@ public class DataUtils {
         topMoviePhoto = context.getResources().obtainTypedArray(R.array.top_movies_photo);
         addMovieToList();
         return topMoviesList;
+    }
+
+    public static ArrayList<Integer>  getDataGameCarousel(int i,Context context){
+        ArrayList<Integer> gameCarouselId = new ArrayList<>();
+        nestedArrayGameCarousel = context.getResources().obtainTypedArray(R.array.game_carousel);
+
+        int resId = nestedArrayGameCarousel.getResourceId(i,-1);
+        gameCarousel = context.getResources().obtainTypedArray(resId);
+        for (int j = 0;j < gameCarousel.length(); j++){
+            gameCarouselId.add(gameCarousel.getResourceId(j,-1));
+        }
+
+        return gameCarouselId;
     }
 
     public static void addSectionChoiceData(){

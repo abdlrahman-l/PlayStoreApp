@@ -1,7 +1,10 @@
 package com.example.tabgoplayactivity.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,7 +40,7 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         switch (whichTab){
             case MainActivity.APP_CAROUSEL:
 
@@ -46,6 +49,17 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
                     SingleGameModel singleGameModel = listGame.get(position);
                     holder.nameApp.setText(singleGameModel.getGameName());
                     holder.rateApp.setText(String.valueOf(singleGameModel.getGameRating()));
+                    AnimationDrawable animationDrawable = new AnimationDrawable();
+                    for (int i =0; i < 4; i++){
+                        BitmapDrawable drawable = (BitmapDrawable) mContext.getResources().getDrawable(singleGameModel.getGameCarousel().get(i));
+                        animationDrawable.addFrame(drawable,2000);
+                    }
+                    animationDrawable.setOneShot(false);
+                    holder.imageCarousel.setBackground(animationDrawable);
+                    animationDrawable.start();
+//                    holder.imageCarousel.setBackgroundResource(R.drawable.spin_animation);
+//                    AnimationDrawable frameAnimation = (AnimationDrawable) holder.imageCarousel.getBackground();
+//                    frameAnimation.start();
 //                    holder.imageIcon.setImageResource(singleGameModel.getGameIcon());
                 break;
         }

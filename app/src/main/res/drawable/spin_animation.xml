@@ -1,0 +1,8 @@
+<animation-list android:id="@+id/selected"
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/pubg_carousel" android:duration="2000" />
+    <item android:drawable="@drawable/pubg_carousel2" android:duration="2000" />
+    <item android:drawable="@drawable/pubg_carousel3" android:duration="2000" />
+    <item android:drawable="@drawable/pubg_carousel4" android:duration="2000" />
+</animation-list>

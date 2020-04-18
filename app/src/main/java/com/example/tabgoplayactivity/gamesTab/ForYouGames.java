@@ -22,6 +22,7 @@ import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.utils.CommonUtils;
+import com.example.tabgoplayactivity.utils.DataUtils;
 import com.lapism.searchview.widget.SearchView;
 
 import java.util.ArrayList;
@@ -80,10 +81,8 @@ public class ForYouGames extends Fragment {
 
             dm.setHeaderTitle("Section " + i);
             dm.setDescriptionTitle("Description" + i);
-            ArrayList<SingleGameModel> singleItem = new ArrayList<SingleGameModel>();
-            for (int j = 0; j <= 5; j++) {
-                singleItem.add(new SingleGameModel("Item " + j,j+" MB", "URL " + j));
-            }
+            DataUtils dataUtils = new DataUtils();
+            ArrayList<SingleGameModel> singleItem = dataUtils.getListGames(getActivity());
 
             dm.setAllItemsInSection(singleItem);
 

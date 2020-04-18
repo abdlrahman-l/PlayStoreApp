@@ -34,7 +34,7 @@
     <array name="top_movies_photo">
         <item>@drawable/gundala</item>
         <item>@drawable/joker</item>
-        <item>@drawable/rumahkentang</item>
+        <item>@drawable/joker</item>
         <item>@drawable/jumanji</item>
     </array>
     <string name="title_activity_main2">Main2Activity</string>
@@ -44,5 +44,40 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <array name="game_carousel">
+        <item>@array/aov_carousel</item>
+        <item>@array/pubg_carousel</item>
+        <item>@array/apex_carousel</item>
+        <item>@array/darkness_carousel</item>
+    </array>
+
+    <array name="aov_carousel">
+        <item>@drawable/aov_carousel</item>
+        <item>@drawable/aov_carousel2</item>
+        <item>@drawable/aov_carousel3</item>
+        <item>@drawable/aov_carousel4</item>
+    </array>
+
+    <array name="pubg_carousel">
+        <item>@drawable/pubg_carousel</item>
+        <item>@drawable/pubg_carousel2</item>
+        <item>@drawable/pubg_carousel3</item>
+        <item>@drawable/pubg_carousel4</item>
+    </array>
+
+    <array name="apex_carousel">
+        <item>@drawable/apex_carousel</item>
+        <item>@drawable/apex_carousel2</item>
+        <item>@drawable/apex_carousel3</item>
+        <item>@drawable/apex_carousel4</item>
+    </array>
+
+    <array name="darkness_carousel">
+        <item>@drawable/darkness_carousel</item>
+        <item>@drawable/darkness_carousel2</item>
+        <item>@drawable/darkness_carousel3</item>
+        <item>@drawable/darkness_carousel4</item>
+    </array>
 
 </resources>

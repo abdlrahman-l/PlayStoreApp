@@ -14,17 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-
-import com.example.tabgoplayactivity.adapter.RecyclerViewPerSectionAdapter;
 import com.example.tabgoplayactivity.adapter.TabGameCategoryAdapter;
 import com.example.tabgoplayactivity.gamesTab.EditorChoiceGamesFragment;
 import com.example.tabgoplayactivity.gamesTab.ForYouGames;
 import com.example.tabgoplayactivity.gamesTab.TopGamesFragment;
-import com.example.tabgoplayactivity.model.SectionDataGameModel;
-import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.google.android.material.tabs.TabLayout;
 import com.lapism.searchview.widget.SearchView;
 

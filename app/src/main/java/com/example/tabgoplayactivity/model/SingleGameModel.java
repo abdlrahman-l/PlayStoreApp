@@ -1,6 +1,7 @@
 package com.example.tabgoplayactivity.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class SingleGameModel implements Serializable {
 
@@ -9,6 +10,7 @@ public class SingleGameModel implements Serializable {
     private String gameDescription;
     private String gameSize;
     private int gameIcon;
+    private ArrayList<Integer> gameCarousel;
 
     public SingleGameModel(){
 
@@ -59,4 +61,11 @@ public class SingleGameModel implements Serializable {
         this.gameIcon = gameIcon;
     }
 
+    public ArrayList<Integer> getGameCarousel() {
+        return gameCarousel;
+    }
+
+    public void setGameCarousel(ArrayList<Integer> gameCarousel) {
+        this.gameCarousel = gameCarousel;
+    }
 }
