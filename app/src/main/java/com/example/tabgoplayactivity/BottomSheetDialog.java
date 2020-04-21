@@ -28,6 +28,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     private ImageView imageMovie;
     private SingleGameModel singleGame;
     private SingleMovieModel singleMovie;
+    private ImageView imageIcon;
 
     @Nullable
     @Override
@@ -46,6 +47,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         if (singleGame != null){
             name = view.findViewById(R.id.name);
             rating = view.findViewById(R.id.rating);
+            imageIcon = view.findViewById(R.id.image_icon);
+            imageIcon.setImageResource(singleGame.getGameIcon());
             name.setText(singleGame.getGameName());
             rating.setText(String.valueOf(singleGame.getGameRating()));
         }else if (singleMovie != null){

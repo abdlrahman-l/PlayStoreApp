@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tabgoplayactivity.MainActivity;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.listener.ClickListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.model.SingleMovieModel;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionListCarouselAdapter.ViewHolder> {
@@ -25,6 +28,7 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
     private ArrayList<SingleGameModel> listGame;
     private int whichTab;
     private Context mContext;
+    private ClickListener listener;
 
     @NonNull
     @Override
@@ -34,9 +38,10 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
         return viewHolder;
     }
 
-    public SectionListCarouselAdapter(Context mContext, int whichTab) {
+    public SectionListCarouselAdapter(Context mContext, int whichTab, ClickListener listener) {
         this.mContext = mContext;
         this.whichTab = whichTab;
+        this.listener = listener;
     }
 
     @Override
@@ -82,6 +87,8 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
         protected ImageView imageCarousel;
         protected ImageView imageIcon;
         protected TextView nameApp,rateApp;
+        protected LinearLayout container;
+        protected WeakReference<ClickListener> listenerRef;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +97,14 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
             imageIcon = itemView.findViewById(R.id.image_icon);
             nameApp = itemView.findViewById(R.id.name);
             rateApp = itemView.findViewById(R.id.rating);
+            container = itemView.findViewById(R.id.carousel_container);
+            listenerRef = new WeakReference<>(listener);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerRef.get().onPositionClicked(getAdapterPosition());
+                }
+            });
 
         }
     }

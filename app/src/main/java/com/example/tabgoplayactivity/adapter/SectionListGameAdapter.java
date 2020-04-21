@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
         final SingleGameModel singleGame = gameList.get(position);
         holder.gameName.setText(singleGame.getGameName());
         holder.gameSize.setText(singleGame.getGameSize());
+        holder.gameImage.setImageResource(singleGame.getGameIcon());
     }
 
     @Override
@@ -57,6 +59,7 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
     public class SingleGameRowHolder extends RecyclerView.ViewHolder {
         protected TextView gameName;
         protected TextView gameSize;
+        protected ImageView gameImage;
         protected LinearLayout gameContainer;
         protected WeakReference<ClickListener> listenerRef;
 
@@ -65,6 +68,7 @@ public class SectionListGameAdapter extends RecyclerView.Adapter<SectionListGame
             this.listenerRef = new WeakReference<>(listener);
             this.gameName = itemView.findViewById(R.id.game_title);
             this.gameSize = itemView.findViewById(R.id.game_size);
+            this.gameImage = itemView.findViewById(R.id.game_image);
             this.gameContainer = itemView.findViewById(R.id.single_game_container);
             this.gameContainer.setOnClickListener(new View.OnClickListener() {
                 @Override

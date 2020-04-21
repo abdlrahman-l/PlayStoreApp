@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.model.SingleGameModel;
@@ -22,6 +23,7 @@ public class DetailFragment extends Fragment {
 
     private SingleGameModel singleGame;
     private TextView detailName,detailName2;
+    private ImageView iconDetail;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -40,8 +42,10 @@ public class DetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         detailName = view.findViewById(R.id.name_detail);
         detailName2 = view.findViewById(R.id.name_detail_2);
+        iconDetail = view.findViewById(R.id.icon_detail);
         singleGame = ((DetailsActivity)getActivity()).getSingleGame();
         detailName.setText(singleGame.getGameName());
         detailName2.setText(singleGame.getGameName());
+        iconDetail.setImageResource(singleGame.getGameIcon());
     }
 }
