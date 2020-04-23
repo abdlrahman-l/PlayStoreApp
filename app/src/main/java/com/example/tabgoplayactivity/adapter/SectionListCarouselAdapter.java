@@ -59,6 +59,7 @@ public class SectionListCarouselAdapter extends RecyclerView.Adapter<SectionList
                     for (int i =0; i < 4; i++){
                         BitmapDrawable drawable = (BitmapDrawable) mContext.getResources().getDrawable(singleGameModel.getGameCarousel().get(i));
                         animationDrawable.addFrame(drawable,2000);
+                        animationDrawable.setEnterFadeDuration(200);
                     }
                     animationDrawable.setOneShot(false);
                     holder.imageCarousel.setBackground(animationDrawable);
