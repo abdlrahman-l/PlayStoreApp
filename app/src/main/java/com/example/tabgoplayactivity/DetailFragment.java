@@ -55,6 +55,7 @@ public class DetailFragment extends Fragment {
         iconDetail.setImageResource(singleGame.getGameIcon());
         if (singleGame.getGameCarousel() != null){
             CarouselAdapter carouselAdapter = new CarouselAdapter(singleGame.getGameCarousel(), getActivity());
+            carouselAdapter.setVideoId("O4HRfSmkTv4");
             carouselRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
             carouselRecycler.setAdapter(carouselAdapter);
         }

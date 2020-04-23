@@ -11,6 +11,7 @@ public class SingleGameModel implements Serializable {
     private String gameSize;
     private int gameIcon;
     private ArrayList<Integer> gameCarousel;
+    private String youtubeVideoId;
 
     public SingleGameModel(){
 
@@ -72,5 +73,13 @@ public class SingleGameModel implements Serializable {
     public void setGameFromResource(String name, int rating){
         this.gameName = name;
         this.gameRating = rating;
+    }
+
+    public String getYoutubeVideoId() {
+        return youtubeVideoId;
+    }
+
+    public void setYoutubeVideoId(String youtubeVideoId) {
+        this.youtubeVideoId = youtubeVideoId;
     }
 }
