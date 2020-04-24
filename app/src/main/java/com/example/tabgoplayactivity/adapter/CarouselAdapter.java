@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,9 +63,10 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             Glide.with(holder.youTubePlayerView.getContext()).load(idDrawableList.get(0)).into(holder.youtubeThumbnail);
             holder.youtubeThumbnail.setVisibility(View.VISIBLE);
             holder.youTubePlayerView.setVisibility(View.GONE);
-            holder.youtubeThumbnail.setOnClickListener(view -> {
+            holder.playButton.setOnClickListener(view -> {
                 holder.youtubeThumbnail.setVisibility(View.GONE);
                 holder.thumbnailContainer.setVisibility(View.GONE);
+                holder.playContainer.setVisibility(View.GONE);
                 holder.youTubePlayerView.setVisibility(View.VISIBLE);
                 holder.youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                     @Override
@@ -92,6 +94,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         protected CardView thumbnailContainer;
         protected ImageView youtubeThumbnail;
         protected YouTubePlayerView youTubePlayerView;
+        protected FrameLayout playContainer;
+        protected ImageView playButton;
 
         public CarouselSingleHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +105,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             youtubeThumbnail = itemView.findViewById(R.id.youtube_thumbnail);
             thumbnailContainer = itemView.findViewById(R.id.youtube_thumbnai_container);
             youTubePlayerView = itemView.findViewById(R.id.youtube_view);
+            playContainer = itemView.findViewById(R.id.frame_play_container);
+            playButton = itemView.findViewById(R.id.play_button);
         }
     }
 }
