@@ -13,16 +13,21 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tabgoplayactivity.R;
+import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.CarouselSingleHolder> {
@@ -31,10 +36,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
     private Context context;
     private String videoId;
     DisplayMetrics displayMetrics = new DisplayMetrics();
+    private Fragment thisFragment;
+    private YoutubePlayerListener listener;
 
-    public CarouselAdapter(ArrayList<Integer> idDrawableList, Context context) {
+    public CarouselAdapter(ArrayList<Integer> idDrawableList, Context context, Fragment fragment, YoutubePlayerListener listener) {
         this.idDrawableList = idDrawableList;
         this.context = context;
+        thisFragment = fragment;
+        this.listener = listener;
     }
 
     public String getVideoId() {
@@ -72,6 +81,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                         youTubePlayer.loadVideo(videoId, 0);
+                        listener.onClick(holder.youTubePlayerView);
                     }
                 });
             });
@@ -96,6 +106,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         protected YouTubePlayerView youTubePlayerView;
         protected FrameLayout playContainer;
         protected ImageView playButton;
+        protected WeakReference<YoutubePlayerListener> listenerRef;
 
         public CarouselSingleHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +118,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             youTubePlayerView = itemView.findViewById(R.id.youtube_view);
             playContainer = itemView.findViewById(R.id.frame_play_container);
             playButton = itemView.findViewById(R.id.play_button);
+            listenerRef = new WeakReference<>(listener);
         }
     }
 }

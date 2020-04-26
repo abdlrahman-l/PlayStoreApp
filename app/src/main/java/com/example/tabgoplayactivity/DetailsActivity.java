@@ -6,7 +6,11 @@ import androidx.navigation.NavGraph;
 import androidx.navigation.NavInflater;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.model.SingleGameModel;
@@ -41,6 +45,12 @@ public class DetailsActivity extends AppCompatActivity {
             navGraph.setStartDestination(R.id.movie_detail_fragment);
         }
         navController.setGraph(navGraph);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        onPause();
     }
 
     public SingleGameModel getSingleGame() {

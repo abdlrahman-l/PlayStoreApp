@@ -9,6 +9,7 @@ public class SingleMovieModel implements Serializable {
     private String rating;
     private String price;
     private int image;
+    private int thumbnailYoutube;
 
     public SingleMovieModel() {
     }
@@ -51,5 +52,13 @@ public class SingleMovieModel implements Serializable {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getThumbnailYoutube() {
+        return thumbnailYoutube;
+    }
+
+    public void setThumbnailYoutube(int thumbnailYoutube) {
+        this.thumbnailYoutube = thumbnailYoutube;
     }
 }

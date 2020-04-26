@@ -37,6 +37,14 @@
         <item>@drawable/joker</item>
         <item>@drawable/jumanji</item>
     </array>
+
+    <array name="movie_thumbnail">
+        <item>@drawable/aov_carousel</item>
+        <item>@drawable/joker_thumbnail</item>
+        <item>@drawable/joker_thumbnail</item>
+        <item>@drawable/joker_thumbnail</item>
+    </array>
+
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

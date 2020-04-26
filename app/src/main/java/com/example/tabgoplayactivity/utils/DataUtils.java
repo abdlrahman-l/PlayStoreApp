@@ -18,6 +18,7 @@ public class DataUtils {
     private static String topMovieCategory[];
     private static String topMovieRating[];
     private static String topMoviePrice[];
+    private static TypedArray topMovieThumbnail;
     private static TypedArray topMoviePhoto;
     private static ArrayList<SingleMovieModel> topMoviesList;
     private static ArrayList<ArrayList<SingleGameModel>> listGames = new ArrayList<>();
@@ -98,6 +99,7 @@ public class DataUtils {
             topMovie.setRating(topMovieRating[i]);
             topMovie.setPrice(topMoviePrice[i]);
             topMovie.setImage(topMoviePhoto.getResourceId(i,-1));
+            topMovie.setThumbnailYoutube(topMovieThumbnail.getResourceId(i,-1));
             topMoviesList.add(topMovie);
         }
     }
@@ -108,6 +110,7 @@ public class DataUtils {
         topMovieRating = context.getResources().getStringArray(R.array.top_movies_rating);
         topMoviePrice = context.getResources().getStringArray(R.array.top_movies_price);
         topMoviePhoto = context.getResources().obtainTypedArray(R.array.top_movies_photo);
+        topMovieThumbnail = context.getResources().obtainTypedArray(R.array.movie_thumbnail);
         addMovieToList();
         return topMoviesList;
     }

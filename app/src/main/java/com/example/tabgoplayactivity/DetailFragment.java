@@ -16,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.adapter.CarouselAdapter;
+import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 
 /**
@@ -28,7 +30,7 @@ public class DetailFragment extends Fragment {
     private TextView detailName,detailName2;
     private ImageView iconDetail;
     private RecyclerView carouselRecycler;
-
+    private YouTubePlayerView youTubePlayerVieww;
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -54,10 +56,22 @@ public class DetailFragment extends Fragment {
         detailName2.setText(singleGame.getGameName());
         iconDetail.setImageResource(singleGame.getGameIcon());
         if (singleGame.getGameCarousel() != null){
-            CarouselAdapter carouselAdapter = new CarouselAdapter(singleGame.getGameCarousel(), getActivity());
+            CarouselAdapter carouselAdapter = new CarouselAdapter(singleGame.getGameCarousel(), getActivity(), this, new YoutubePlayerListener() {
+                @Override
+                public void onClick(YouTubePlayerView youTubePlayerView) {
+                    youTubePlayerVieww = youTubePlayerView;
+                }
+            });
             carouselAdapter.setVideoId("O4HRfSmkTv4");
             carouselRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
             carouselRecycler.setAdapter(carouselAdapter);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (youTubePlayerVieww != null)
+            youTubePlayerVieww.release();
     }
 }
