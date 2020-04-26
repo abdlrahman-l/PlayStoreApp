@@ -38,6 +38,12 @@
         <item>@drawable/jumanji</item>
     </array>
 
+    <array name="desc_games_icon">
+        <item>@drawable/ic_add_black_24dp</item>
+        <item>@drawable/ic_star_black_24dp</item>
+        <item>@drawable/ic_file_download_black_24dp</item>
+    </array>
+
     <array name="movie_thumbnail">
         <item>@drawable/aov_carousel</item>
         <item>@drawable/joker_thumbnail</item>

@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.adapter.CarouselAdapter;
+import com.example.tabgoplayactivity.adapter.DescriptionDetailsAdapter;
 import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
+import com.example.tabgoplayactivity.utils.DataUtils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 
@@ -30,6 +32,7 @@ public class DetailFragment extends Fragment {
     private TextView detailName,detailName2;
     private ImageView iconDetail;
     private RecyclerView carouselRecycler;
+    private RecyclerView descRecycler;
     private YouTubePlayerView youTubePlayerVieww;
     public DetailFragment() {
         // Required empty public constructor
@@ -49,12 +52,19 @@ public class DetailFragment extends Fragment {
         detailName = view.findViewById(R.id.name_detail);
         detailName2 = view.findViewById(R.id.name_detail_2);
         iconDetail = view.findViewById(R.id.icon_detail);
+        descRecycler = view.findViewById(R.id.desc_recycler);
         carouselRecycler = view.findViewById(R.id.carousel_recycler);
         carouselRecycler.setHasFixedSize(true);
+        descRecycler.setHasFixedSize(true);
         singleGame = ((DetailsActivity)getActivity()).getSingleGame();
         detailName.setText(singleGame.getGameName());
         detailName2.setText(singleGame.getGameName());
         iconDetail.setImageResource(singleGame.getGameIcon());
+
+        DescriptionDetailsAdapter descriptionDetailsAdapter = new DescriptionDetailsAdapter(singleGame,getActivity(),DataUtils.getGamesDescIcon(getActivity()));
+        descRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        descRecycler.setAdapter(descriptionDetailsAdapter);
+
         if (singleGame.getGameCarousel() != null){
             CarouselAdapter carouselAdapter = new CarouselAdapter(singleGame.getGameCarousel(), getActivity(), this, new YoutubePlayerListener() {
                 @Override

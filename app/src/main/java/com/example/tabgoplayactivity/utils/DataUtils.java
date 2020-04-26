@@ -20,6 +20,7 @@ public class DataUtils {
     private static String topMoviePrice[];
     private static TypedArray topMovieThumbnail;
     private static TypedArray topMoviePhoto;
+    private static TypedArray descGamesIcon;
     private static ArrayList<SingleMovieModel> topMoviesList;
     private static ArrayList<ArrayList<SingleGameModel>> listGames = new ArrayList<>();
     private static ArrayList<ArrayList<ChoiceModel>> listChoice = new ArrayList<>();
@@ -144,6 +145,15 @@ public class DataUtils {
     private static void setGameIcon(SingleGameModel singleGameModel, int j, Context context){
         TypedArray gameIcon = context.getResources().obtainTypedArray(R.array.game_icon);
         singleGameModel.setGameIcon(gameIcon.getResourceId(j,-1));
+    }
+
+    public static ArrayList<Integer> getGamesDescIcon(Context context){
+        TypedArray gameDescIcon = context.getResources().obtainTypedArray(R.array.desc_games_icon);
+        ArrayList<Integer> idDescIcon = new ArrayList<>();
+        for (int i=0;i<gameDescIcon.length();i++){
+            idDescIcon.add(gameDescIcon.getResourceId(i,-1));
+        }
+        return idDescIcon;
     }
 
     public static void addSectionChoiceData(){
