@@ -65,13 +65,12 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
     @Override
     public void onBindViewHolder(@NonNull CarouselSingleHolder holder, int position) {
         if (position == 0 && videoId != null){
-            holder.carouselContainer.setVisibility(View.GONE);
-            holder.youtubeContainer.setVisibility(View.VISIBLE);
             ((Activity) holder.youTubePlayerView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
-            Glide.with(holder.youTubePlayerView.getContext()).load(idDrawableList.get(0)).into(holder.youtubeThumbnail);
-            holder.youtubeThumbnail.setVisibility(View.VISIBLE);
-            holder.youTubePlayerView.setVisibility(View.GONE);
+//            Glide.with(holder.youTubePlayerView.getContext()).load(idDrawableList.get(0)).into(holder.youtubeThumbnail);
+            holder.youtubeThumbnail.setImageResource(idDrawableList.get(0));
+            holder.youtubeContainer.setVisibility(View.VISIBLE);
+            holder.thumbnailContainer.setVisibility(View.VISIBLE);
             holder.playButton.setOnClickListener(view -> {
                 holder.youtubeThumbnail.setVisibility(View.GONE);
                 holder.thumbnailContainer.setVisibility(View.GONE);
@@ -86,6 +85,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
                 });
             });
         }else{
+            holder.carouselContainer.setVisibility(View.VISIBLE);
             holder.imageCarousel.setImageResource(idDrawableList.get(position-1));
         }
     }

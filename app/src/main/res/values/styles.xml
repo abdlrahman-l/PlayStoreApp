@@ -8,8 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Tabtheme</item>
         <item name="actionBarTabTextStyle">@style/ActionBarTabTextStyle.Tabtheme</item>
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
     </style>
 
+    <style name="AppTheme.Widget"/>
+
+    <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="fontPath">fonts/productsans_regular.ttf</item>
+    </style>
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -26,6 +32,7 @@
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textStyle">normal</item>
+        <item name="fontPath">fonts/productsans_regular.ttf</item>
     </style>
 
     <style name="AppTheme.NoActionBar.NoActionBar">
