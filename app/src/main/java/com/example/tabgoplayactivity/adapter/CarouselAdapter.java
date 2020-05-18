@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -64,13 +65,17 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
 
     @Override
     public void onBindViewHolder(@NonNull CarouselSingleHolder holder, int position) {
-        if (position == 0 && videoId != null){
+        if (position == getItemCount()-1){
+            holder.rootContainer.setPadding(0,0,20,0);
+        }
+        else if (position == 0 && videoId != null){
             ((Activity) holder.youTubePlayerView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
 //            Glide.with(holder.youTubePlayerView.getContext()).load(idDrawableList.get(0)).into(holder.youtubeThumbnail);
             holder.youtubeThumbnail.setImageResource(idDrawableList.get(0));
             holder.youtubeContainer.setVisibility(View.VISIBLE);
             holder.thumbnailContainer.setVisibility(View.VISIBLE);
+            holder.rootContainer.setPadding(20,0,0,0);
             holder.playButton.setOnClickListener(view -> {
                 holder.youtubeThumbnail.setVisibility(View.GONE);
                 holder.thumbnailContainer.setVisibility(View.GONE);
@@ -106,6 +111,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         protected YouTubePlayerView youTubePlayerView;
         protected FrameLayout playContainer;
         protected ImageView playButton;
+        protected LinearLayout rootContainer;
         protected WeakReference<YoutubePlayerListener> listenerRef;
 
         public CarouselSingleHolder(@NonNull View itemView) {
@@ -118,6 +124,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             youTubePlayerView = itemView.findViewById(R.id.youtube_view);
             playContainer = itemView.findViewById(R.id.frame_play_container);
             playButton = itemView.findViewById(R.id.play_button);
+            rootContainer = itemView.findViewById(R.id.carousel_root_container);
             listenerRef = new WeakReference<>(listener);
         }
     }

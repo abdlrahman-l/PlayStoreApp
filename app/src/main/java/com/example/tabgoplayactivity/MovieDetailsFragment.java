@@ -1,6 +1,7 @@
 package com.example.tabgoplayactivity;
 
 
+import android.animation.LayoutTransition;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -47,7 +51,6 @@ public class MovieDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie_details, container, false);
     }
 
@@ -74,13 +77,12 @@ public class MovieDetailsFragment extends Fragment {
         categoryMovie.setText(singleMovie.getCategory());
         imageMovie.setImageResource(singleMovie.getImage());
         thumbnailMovie.setImageResource(singleMovie.getThumbnailYoutube());
-
         setUpYoutubeViewer();
         expand(youtubeRelativeContainer);
     }
 
     private void setUpYoutubeViewer(){
-        Glide.with(youTubePlayerView.getContext()).load(singleMovie.getThumbnailYoutube()).into(thumbnailMovie);
+//        Glide.with(youTubePlayerView.getContext()).load(singleMovie.getThumbnailYoutube()).into(thumbnailMovie);
         playButton.setOnClickListener(view -> {
             thumbnailContainer.setVisibility(View.GONE);
             youTubePlayerView.setVisibility(View.VISIBLE);
@@ -93,7 +95,7 @@ public class MovieDetailsFragment extends Fragment {
         });
     }
 
-    public static void expand(final View v) {
+    private void expand(final View v) {
         v.measure(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         final int targetHeight = v.getMeasuredHeight();
         final float EPSILON = 0.0000001f;
@@ -117,7 +119,36 @@ public class MovieDetailsFragment extends Fragment {
 
         // 1dp/ms
         a.setDuration(500);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setAnimationForThumbnail();
+                thumbnailMovie.setVisibility(View.VISIBLE);
+                playButton.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         v.startAnimation(a);
         v.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setAnimationForThumbnail(){
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator()); // add this
+        fadeIn.setDuration(500);
+        AnimationSet animation1 = new AnimationSet(false); // change to false
+        animation1.addAnimation(fadeIn);
+        animation1.setRepeatCount(1);
+        thumbnailMovie.startAnimation(animation1);
     }
 }

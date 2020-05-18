@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tabgoplayactivity.R;
@@ -46,6 +48,7 @@ public class DescriptionDetailsAdapter extends RecyclerView.Adapter<DescriptionD
                 holder.midIcon.setImageResource(idDescIcon.get(1));
                 holder.rightDesc.setVisibility(View.GONE);
                 holder.bottomDesc.setText("230 K reviews");
+//                holder.rootContainer.setPadding(20,0,0,0);
                 break;
             case 1:
                 holder.leftDesc.setVisibility(View.GONE);
@@ -65,6 +68,7 @@ public class DescriptionDetailsAdapter extends RecyclerView.Adapter<DescriptionD
                 holder.rightDesc.setVisibility(View.GONE);
                 holder.bottomDesc.setText("Downloads");
                 holder.lineEnd.setVisibility(View.GONE);
+//                holder.rootContainer.setPadding(0,0,20,0);
         }
     }
 
@@ -78,6 +82,7 @@ public class DescriptionDetailsAdapter extends RecyclerView.Adapter<DescriptionD
         protected ImageView midIcon;
         protected TextView rightDesc;
         protected TextView bottomDesc;
+        protected RelativeLayout rootContainer;
         protected View lineEnd;
 
         public SingleHolder(@NonNull View itemView) {
@@ -87,6 +92,7 @@ public class DescriptionDetailsAdapter extends RecyclerView.Adapter<DescriptionD
             rightDesc = itemView.findViewById(R.id.right_desc_text);
             bottomDesc = itemView.findViewById(R.id.bot_desc_text);
             lineEnd = itemView.findViewById(R.id.line_end);
+            rootContainer = itemView.findViewById(R.id.desc_root_container);
         }
     }
 }

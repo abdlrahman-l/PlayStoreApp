@@ -10,6 +10,7 @@
     <RelativeLayout
         android:id="@+id/youtube_relative_container"
         android:layout_width="match_parent"
+        android:animateLayoutChanges="true"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
@@ -21,7 +22,8 @@
                 android:id="@+id/youtube_thumbnail_movie"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:visibility="invisible"
+                android:layout_height="220dp"/>
 
             <FrameLayout
                 android:id="@+id/frame_play_container"
@@ -31,6 +33,7 @@
 
                 <ImageView
                     android:id="@+id/play_button"
+                    android:visibility="gone"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@drawable/ic_play_button"/>

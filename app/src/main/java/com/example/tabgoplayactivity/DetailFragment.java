@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,10 @@ import com.example.tabgoplayactivity.adapter.DescriptionDetailsAdapter;
 import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
 import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.example.tabgoplayactivity.utils.DataUtils;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 
@@ -63,6 +68,11 @@ public class DetailFragment extends Fragment {
 
         DescriptionDetailsAdapter descriptionDetailsAdapter = new DescriptionDetailsAdapter(singleGame,getActivity(),DataUtils.getGamesDescIcon(getActivity()));
         descRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+//        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getActivity());
+//        layoutManager.setFlexDirection(FlexDirection.ROW);
+//        layoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
+//        layoutManager.setAlignItems(AlignItems.STRETCH);
+//        descRecycler.setLayoutManager(layoutManager);
         descRecycler.setAdapter(descriptionDetailsAdapter);
 
         if (singleGame.getGameCarousel() != null){
