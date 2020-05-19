@@ -78,7 +78,7 @@ public class DetailFragment extends Fragment {
         if (singleGame.getGameCarousel() != null){
             CarouselAdapter carouselAdapter = new CarouselAdapter(singleGame.getGameCarousel(), getActivity(), this, new YoutubePlayerListener() {
                 @Override
-                public void onClick(YouTubePlayerView youTubePlayerView) {
+                public void onAttach(YouTubePlayerView youTubePlayerView) {
                     youTubePlayerVieww = youTubePlayerView;
                 }
             });

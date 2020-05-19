@@ -10,24 +10,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
-import com.example.tabgoplayactivity.model.SingleGameModel;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +70,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
             holder.youtubeContainer.setVisibility(View.VISIBLE);
             holder.thumbnailContainer.setVisibility(View.VISIBLE);
             holder.rootContainer.setPadding(20,0,0,0);
+            listener.onAttach(holder.youTubePlayerView);
             holder.playButton.setOnClickListener(view -> {
                 holder.youtubeThumbnail.setVisibility(View.GONE);
                 holder.thumbnailContainer.setVisibility(View.GONE);
@@ -85,7 +80,6 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                         youTubePlayer.loadVideo(videoId, 0);
-                        listener.onClick(holder.youTubePlayerView);
                     }
                 });
             });
