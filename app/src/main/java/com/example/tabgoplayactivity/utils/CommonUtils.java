@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.tabgoplayactivity.DetailsActivity;
+import com.example.tabgoplayactivity.PhotoDetailsActivity;
 import com.example.tabgoplayactivity.SectionDetailsActivity;
 import com.example.tabgoplayactivity.model.SectionDataGameModel;
 import com.example.tabgoplayactivity.model.SingleGameModel;
@@ -25,6 +26,13 @@ public class CommonUtils {
     public static void goToGameDetail(Context context, SingleGameModel singleGame){
         Intent detailIntent = new Intent(context, DetailsActivity.class);
         detailIntent.putExtra(DetailsActivity.GAME_DETAILS,singleGame);
+        context.startActivity(detailIntent);
+    }
+
+    public static void goToPhotosDetails(Context context, ArrayList<Integer> idDrawableList,int position){
+        Intent detailIntent = new Intent(context, PhotoDetailsActivity.class);
+        detailIntent.putExtra(PhotoDetailsActivity.LIST_PHOTO_DETAILS,idDrawableList);
+        detailIntent.putExtra(PhotoDetailsActivity.PHOTO_POSITIONS,position);
         context.startActivity(detailIntent);
     }
 

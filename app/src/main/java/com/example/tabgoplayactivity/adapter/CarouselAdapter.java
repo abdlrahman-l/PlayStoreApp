@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.example.tabgoplayactivity.R;
 import com.example.tabgoplayactivity.listener.YoutubePlayerListener;
+import com.example.tabgoplayactivity.utils.CommonUtils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -86,6 +87,12 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         }else{
             holder.carouselContainer.setVisibility(View.VISIBLE);
             holder.imageCarousel.setImageResource(idDrawableList.get(position-1));
+            holder.imageCarousel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.goToPhotosDetails(context,idDrawableList,videoId == null ? position : position-1);
+                }
+            });
         }
     }
 
