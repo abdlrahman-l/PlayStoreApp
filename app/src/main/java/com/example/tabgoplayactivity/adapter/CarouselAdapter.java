@@ -63,7 +63,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         if (position == getItemCount()-1){
             holder.rootContainer.setPadding(0,0,20,0);
         }
-        else if (position == 0 && videoId != null){
+        if (position == 0 && videoId != null){
             ((Activity) holder.youTubePlayerView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
 //            Glide.with(holder.youTubePlayerView.getContext()).load(idDrawableList.get(0)).into(holder.youtubeThumbnail);
