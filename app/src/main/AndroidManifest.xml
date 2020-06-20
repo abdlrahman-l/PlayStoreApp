@@ -13,6 +13,7 @@
         <activity android:name=".DetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"></activity>
         <activity android:name=".SectionDetailsActivity" />
+        <activity android:name=".PhotoDetailsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
